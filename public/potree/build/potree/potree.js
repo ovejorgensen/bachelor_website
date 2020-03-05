@@ -26723,7 +26723,7 @@ ENDSEC
 
 		setDescription (value) {
 			this.description = value;
-			
+
 			$('#potree_description').html(value);
 			//$('#potree_description').text(value);
 		}
@@ -28426,6 +28426,7 @@ ENDSEC
 
 		async stopVR(){
 			// TODO shutdown VR
+
 		}
 
 		loop(timestamp){

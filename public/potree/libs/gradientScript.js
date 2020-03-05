@@ -1,33 +1,30 @@
-console.log("SNAKK TIL MEG");
-
 window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
 
 viewer.setEDLEnabled(true);
 viewer.setFOV(60);
+viewer.setDescription("");
 viewer.setPointBudget(1 * 1000 * 1000);
 viewer.setBackground("gradient"); // ["skybox", "gradient", "black", "white"];
 viewer.setMinNodeSize(10);
 viewer.loadSettingsFromURL();
 
-// viewer.loadGUI(() => {
-//     viewer.setLanguage('en');
-//     $("#menu_appearance").next().show();
-//     $("#menu_tools").next().show();
-//     $("#menu_scene").next().show();
-//     gulpviewer.toggleSidebar();
-// });
+viewer.loadGUI(() => {
+    viewer.setLanguage('en');
+    $("#menu_appearance").next().show();
+    $("#menu_tools").next().show();
+    $("#menu_scene").next().show();
+});
 
 viewer.scene.view.position.set(1441.04, -826.93, 1604.68);
 viewer.scene.view.lookAt(new THREE.Vector3(296.27, -162.42, 786.24));
 
-let radius = 520;
 let gradientName = "TURBO";
 let gradient = Potree.Gradients[gradientName];
 
 let x = 0;
 let y = 400
 
-Potree.loadPointCloud("myData/pointclouds/nuPage/cloud.js", "nuPage", e => {
+Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e => {    
     let pointcloud = e.pointcloud;
     let material = pointcloud.material;
     viewer.scene.addPointCloud(pointcloud);

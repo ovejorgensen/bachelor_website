@@ -50,7 +50,6 @@ export class Viewer extends EventDispatcher{
 			style="position: absolute; z-index: 1000; left: 10px; bottom: 10px">
 		</div>`);
 		$(domElement).append(this.elMessages);
-		
 		try{
 
 		{ // generate missing dom hierarchy
@@ -405,7 +404,7 @@ export class Viewer extends EventDispatcher{
 
 	setDescription (value) {
 		this.description = value;
-		
+
 		$('#potree_description').html(value);
 		//$('#potree_description').text(value);
 	}
@@ -2088,7 +2087,6 @@ export class Viewer extends EventDispatcher{
 		if(this.vr === null){
 			return;
 		}
-
 		let canvas = this.renderer.domElement;
 		let display = this.vr.display;
 
@@ -2111,7 +2109,6 @@ export class Viewer extends EventDispatcher{
 	}
 
 	loop(timestamp){
-
 		if(this.stats){
 			this.stats.begin();
 		}
@@ -2138,7 +2135,7 @@ export class Viewer extends EventDispatcher{
 			this.vr.display.submitFrame();
 		}else{
 			requestAnimationFrame(this.loop.bind(this));
-
+			
 			this.update(this.clock.getDelta(), timestamp);
 
 			this.render();

@@ -1,15 +1,35 @@
 {
-  "name": "potree",
-  "private": true,
-  "version": "0.0.1",
-  "description": "WebGL point cloud viewer",
-  "dependencies": {
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-connect": "^5.7.0",
-    "gulp-util": "^3.0.8",
-    "through": "~2.3.4"
+  "name": "bachelor_website",
+  "version": "1.0.0",
+  "description": "Bachelor project for creating three-dimensional point clouds in a browser",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
   },
-  "author": "Markus Schütz",
-  "license": "BSD-2-CLAUSE"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovejorgensen/bachelor_website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ovejorgensen/bachelor_website/issues"
+  },
+  "homepage": "https://github.com/ovejorgensen/bachelor_website#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "handlebars": "^4.7.3",
+    "jquery": "^3.4.1",
+    "vanilla-router": "^1.2.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
