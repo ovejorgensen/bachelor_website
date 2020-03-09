@@ -1300,6 +1300,7 @@ export class Viewer extends EventDispatcher{
 		this.renderer.domElement.addEventListener('mousedown', () => {
 			this.renderer.domElement.focus();
 		});
+		
 		//this.renderer.domElement.focus();
 
 		// enable frag_depth extension for the interpolation shader, if available
@@ -1424,6 +1425,8 @@ export class Viewer extends EventDispatcher{
 				screenPos.copy(position).project(this.scene.getActiveCamera());
 				screenPos.x = renderAreaSize.x * (screenPos.x + 1) / 2;
 				screenPos.y = renderAreaSize.y * (1 - (screenPos.y + 1) / 2);
+
+				
 
 
 				// SCREEN SIZE

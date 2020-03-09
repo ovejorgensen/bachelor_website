@@ -19,7 +19,7 @@
 
     <link rel="icon" href="assets/images/logo.png">
   </head>
-  <body>
+  <body >
 
     <script src="potree/libs/jquery/jquery-3.1.1.min.js"></script>
     <script src="potree/libs/spectrum/spectrum.js"></script>
@@ -57,7 +57,15 @@
                     <a href="/sample3">Sample 3</a>
                 </li>
               </ul>
-	          </li>
+            </li>
+            <li>
+              <a herf="#uploadSubmenu" data-toggle="collapse" araia-expanded="false">Upload file</a>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                  aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+            </li>
 	        </ul>
 
 	        <div class="footer">
@@ -68,35 +76,43 @@
     	</nav>
 
         <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5">
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-
-            <button type="button" id="sidebarCollapse" class="btn btn-primary">
-              <i class="fa fa-bars"></i>
-              <span class="sr-only">Toggle Menu</span>
-            </button>
-            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars"></i>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/samples">Samples</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+      
 
         <!-- Home Template -->
         <script id="home-template" type="text/x-handlebars-template">
-          <h1>Home</h1>
+          <div>
+            <div id="content" class="col-xl-10 pt-4 p-5">
+              
+              <div class="firstRow">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary " data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar">
+                      <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                 
+                    <h1 class="heading">Avium 3D cloudpoints </h1>
+              </div>
+    
+              
+    
+    
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card" >
+                  <div class="card-header">
+                      <img class="card-img-top" src="assets/images/test.png" alt="photo of sample 1" id="img1">
+                  </div>
+                    <div class="card-body">
+                      <h4 class="card-title">Sample 0.1</h4>
+                      <p class="card-category">LSome Textce</p>
+                      <a href="#" class="btn" style="color:orange; background-color: black;">Knappå</a>
+                    </div>
+                    <div class="card-footer">
+                      <p>Version 0.0.1</p>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </div>
         </script>
 
         <!-- Potree Template -->

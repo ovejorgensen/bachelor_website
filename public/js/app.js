@@ -33,8 +33,8 @@ window.addEventListener('load', () => {
         let html = potreeTemplate();
         el.html(html);
         if(!scriptbool){
-            $("body").append('<script id="gradientScript" src="potree/libs/gradientScript.js"></script>');
-            scriptbool = true;
+           $("body").append('<script id="gradientScript" src="potree/libs/gradientScript.js"></script>');
+           scriptbool = true;
         }
     });
 
