@@ -12736,8 +12736,6 @@ void main() {
 				uProj:          { type: "Matrix4fv", value: [] },
 			};
 
-			console.log(Shaders['edl.vs']);
-
 			this.setValues({
 				uniforms: uniforms,
 				vertexShader: this.getDefines() + Shaders['edl.vs'],

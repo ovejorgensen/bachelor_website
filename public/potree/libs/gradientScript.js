@@ -8,16 +8,15 @@ viewer.setBackground("gradient"); // ["skybox", "gradient", "black", "white"];
 viewer.setMinNodeSize(10);
 viewer.loadSettingsFromURL();
 
+// viewer.loadGUI(() => {
+//     viewer.setLanguage('en');
+//     $("#menu_appearance").next().show();
+//     $("#menu_tools").next().show();
+//     $("#menu_scene").next().show();
+// });
 
- viewer.loadGUI(() => {
-     viewer.setLanguage('en');
-     $("#menu_appearance").next().show();
-     $("#menu_tools").next().show();
-     $("#menu_scene").next().show();
- });
-
-viewer.scene.view.position.set(1441.04, -826.93, 1604.68);
-viewer.scene.view.lookAt(new THREE.Vector3(296.27, -162.42, 786.24));
+// viewer.scene.view.position.set(1441.04, -826.93, 1604.68);
+// viewer.scene.view.lookAt(new THREE.Vector3(296.27, -162.42, 786.24));
 
 let gradientName = "TURBO";
 let gradient = Potree.Gradients[gradientName];
@@ -34,13 +33,13 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
     material.activeAttributeName = "elevation";
     material.gradient = gradient;
 
-    e.pointcloud.position.set(x, y, e.pointcloud.position.z);
+    // e.pointcloud.position.set(x, y, e.pointcloud.position.z);
     material.elevationRange = [150, 225];//magic number
 
     e.pointcloud.updateMatrixWorld();
     let box = e.pointcloud.pcoGeometry.tightBoundingBox.clone();
     box.applyMatrix4(e.pointcloud.matrixWorld);
-    let center = box.getCenter();
+    // let center = box.getCenter();
     material.shape = Potree.PointShape.CIRCLE;
     material.size = 1;
     viewer.fitToScreen();

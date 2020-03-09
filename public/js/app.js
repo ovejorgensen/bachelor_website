@@ -53,7 +53,7 @@ window.addEventListener('load', () => {
 
     $('a').on('click', (event) => {
         // Block browser page load
-        event.preventDefault();
+        // event.preventDefault();
 
         const target = $(event.target);
 
