@@ -2769,6 +2769,30 @@ input[type="button"].btn-block {
   .btn-toolbar .input-group {
     width: auto; }
 
+#toolbar{
+  height: 8vh;
+  align-self:  flex-end;
+  position: absolute; 
+  max-width: 100%-300px;
+  margin: 10px 10px 10px 10px;
+  border-radius: 10px; 
+  border: 2px black solid; 
+  background-color: silver !important;
+}
+
+#toolButton {
+  height: 30px; 
+  width: 30px; 
+  margin: 10px 10px 10px 10px; 
+  overflow: auto; 
+}
+
+#toolFlex{
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  align-content: stretch;
+}
+
 .btn-group > .btn:not(:first-child),
 .btn-group > .btn-group:not(:first-child) {
   margin-left: -1px; }
@@ -8213,7 +8237,6 @@ h1, h2, h3, h4, h5,
   background: #fff;
   border: none;
   border-radius: 0;
-  margin-bottom: 40px;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); }
 
@@ -8235,17 +8258,19 @@ h1, h2, h3, h4, h5,
 #sidebar {
   min-width: 300px;
   max-width: 300px;
+  height: 100vh;
   background: #1d1919;
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s; }
   #sidebar.active {
-    margin-left: -300px; }
+    margin-left: -300px;
+    transition: all 0.3s; }
   #sidebar .logo {
     display: block;
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     margin: 0 auto; }
     #sidebar .logo span {
       display: block; }
@@ -8285,7 +8310,7 @@ a[data-toggle="collapse"] {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
-@media (max-width: 991.98px) {
+@media (max-width: 50%) {
   #sidebarCollapse span {
     display: none; } }
 
