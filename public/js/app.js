@@ -32,6 +32,7 @@ window.addEventListener('load', () => {
     router.add('/sample1', () => {
         let html = potreeTemplate();
         el.html(html);
+        $("body").append('<script src="assets/js/functions.js"></script>');
         if(!scriptbool){
            $("body").append('<script id="gradientScript" src="potree/libs/gradientScript.js"></script>');
            scriptbool = true;
@@ -53,7 +54,7 @@ window.addEventListener('load', () => {
 
     $('a').on('click', (event) => {
         // Block browser page load
-        // event.preventDefault();
+        //event.preventDefault();
 
         const target = $(event.target);
 
