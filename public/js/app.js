@@ -33,15 +33,14 @@ window.addEventListener('load', () => {
         let html = potreeTemplate();
         el.html(html);
         $("body").append('<script src="assets/js/functions.js"></script>');
-        if(!scriptbool){
-           $("body").append('<script id="gradientScript" src="potree/libs/gradientScript.js"></script>');
-           scriptbool = true;
-        }
+        $("body").append('<script src="potree/libs/gradientScript.js"></script>');
     });
 
     router.add('/sample2', () => {
         let html = potreeTemplate();
         el.html(html);
+        $("body").append('<script src="assets/js/functions.js"></script>');
+        $("body").append('<script src="potree/libs/geoScript.js"></script>');
     });
 
     router.add('/sample3', () => {
