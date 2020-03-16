@@ -46,6 +46,9 @@ window.addEventListener('load', () => {
     router.add('/sample3', () => {
         let html = potreeTemplate();
         el.html(html);
+        // $("body").append('<script type="module" src="potree/libs/three.js/build/three.module.js"></script>');
+        $("body").append('<script src="assets/js/functions.js"></script>');
+        $("body").append('<script src="assets/js/animationPath.js"></script>');
     });
 
     // Navigate app to current url

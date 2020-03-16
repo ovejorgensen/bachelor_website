@@ -15,22 +15,11 @@ viewer.loadSettingsFromURL();
      $("#menu_scene").next().show();
  });
 
-// viewer.scene.view.position.set(1441.04, -826.93, 1604.68);
-// viewer.scene.view.lookAt(new THREE.Vector3(296.27, -162.42, 786.24));
 let gradientName = "TURBO";
 let gradient = Potree.Gradients[gradientName];
 
 let x = 0;
 let y = 400
-// viewer.scene.view.position.set(1441.04, -826.93, 1604.68);
-// viewer.scene.view.lookAt(new THREE.Vector3(296.27, -162.42, 786.24));
-
-//Roads
-// viewer.scene.view.position.set(284746.34, 5207179.8980, 1604.68);
-// viewer.scene.view.lookAt(new THREE.Vector3(284746.34, 5207179.8980, 786.24));
-//flightpath
-// viewer.scene.view.position.set(5971866, 1022212, 1604.68);
-// viewer.scene.view.lookAt(new THREE.Vector3(5971866, 1022212, 786.24));
 
 Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e => {    
     let pointcloud = e.pointcloud;
@@ -69,15 +58,7 @@ GeoJSON = function(url, params, scene) {
                     sizeAttenuation: false 
                 });
             }
-            
-            // if (params.lineMaterial) {
-            //     lineMaterial = params.lineMaterial;
-            // } else {
-            //     lineMaterial = new THREE.LineBasicMaterial({
-            //         color: 0x00ff00,
-            //         linewidth: 50000
-            //     });
-            // }
+
             var positions = [];
 
             for (var i=0; i<geojson.features.length; i++) {
@@ -95,11 +76,10 @@ GeoJSON = function(url, params, scene) {
                         scene.add(line);
                     }
                     else if(i>0 && geojson.features[i].geometry.coordinates[0]!=geojson.features[i-1].geometry.coordinates[0]){
-                        positions.push( coord[0]*100000-5971866+284448, coord[2]*100000-1022212+5206745, parseInt(altitude)+200); 
+                        positions.push( coord[0]*100000-5971866+284348, coord[2]*100000-1022212+5206745, parseInt(altitude)+200); 
                         // console.log(coord[0]*100000-5971866+284448, coord[2]*100000-1022212+5206745, parseInt(altitude));
                     }
                     
-
                 } else if (geotype.toLowerCase() == 'linestring') {
 
                         // var positions = [];

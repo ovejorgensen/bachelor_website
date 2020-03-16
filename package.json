@@ -27,6 +27,8 @@
     "express": "^4.17.1",
     "handlebars": "^4.7.3",
     "jquery": "^3.4.1",
+    "three": "^0.114.0",
+    "three-gltf-loader": "^1.111.0",
     "vanilla-router": "^1.2.7"
   },
   "devDependencies": {
