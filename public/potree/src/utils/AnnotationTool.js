@@ -22,7 +22,9 @@ export class AnnotationTool extends EventDispatcher{
 		let annotation = new Annotation({
 			position: [589748.270, 231444.540, 753.675],
 			title: "Annotation Title",
-			description: `Annotation Description`
+			description: `Annotation Description`,
+			description2: 'test',
+			image: "<img src='.../assets/images/digital_draft_3.png'>"
 		});
 		this.dispatchEvent({type: 'start_inserting_annotation', annotation: annotation});
 

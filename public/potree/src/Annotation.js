@@ -5,12 +5,16 @@ import {Utils} from "./utils.js";
 import {EventDispatcher} from "./EventDispatcher.js";
 
 export class Annotation extends EventDispatcher {
+	
+	
 	constructor (args = {}) {
 		super();
 
 		this.scene = null;
 		this._title = args.title || 'No Title';
 		this._description = args.description || '';
+		this._description2 = args.description || '';
+		this._image = args.image || '';
 		this.offset = new THREE.Vector3();
 		this.uuid = THREE.Math.generateUUID();
 
@@ -44,6 +48,7 @@ export class Annotation extends EventDispatcher {
 		this.boundingBox = new THREE.Box3();
 
 		let iconClose = exports.resourcePath + '/icons/close.svg';
+		let testImage = '/public/assets/images/digital_draft_3.png';
 
 		this.domElement = $(`
 			<div class="annotation" oncontextmenu="return false;">
@@ -56,6 +61,12 @@ export class Annotation extends EventDispatcher {
 					</span>
 					<span class="annotation-description-content">${this._description}</span>
 				</div>
+				<div class="annotation-description2">
+					<span class="annotation-description2-close">
+						<img src="${testImage}" width="16px">
+					</span>
+					<span class="annotation-description2-content">${this._description2}</span>
+				</div>
 			</div>
 		`);
 
@@ -64,6 +75,9 @@ export class Annotation extends EventDispatcher {
 		this.elTitle.append(this._title);
 		this.elDescription = this.domElement.find('.annotation-description');
 		this.elDescriptionClose = this.elDescription.find('.annotation-description-close');
+		this.elImage = this.domElement.find('.annotation-image');
+		this.elDescription2 = this.domElement.find('.annotation-description2');
+		this.elDescriptionClose2 = this.elDescription2.find('.annotation-description2-close');
 		// this.elDescriptionContent = this.elDescription.find(".annotation-description-content");
 
 		this.clickTitle = () => {
@@ -366,6 +380,47 @@ export class Annotation extends EventDispatcher {
 		const elDescriptionContent = this.elDescription.find(".annotation-description-content");
 		elDescriptionContent.empty();
 		elDescriptionContent.append(this._description);
+
+		this.dispatchEvent({
+			type: "annotation_changed",
+			annotation: this,
+		});
+	}
+
+	get description2 () {
+		return this._description2;
+	}
+
+	set description2 (description2) {
+		if (this._description2 === description2) {
+			return;
+		}
+
+		this._description2 = description2;
+
+		const elDescriptionContent2 = this.elDescription2.find(".annotation-description2-content");
+		elDescriptionContent2.empty();
+		elDescriptionContent2.append(this._description2);
+
+		this.dispatchEvent({
+			type: "annotation_changed",
+			annotation: this,
+		});
+	}
+
+	get image () {
+		return this._image;
+	}
+
+	set image () {
+		if (this._image === image){
+			return;
+		}
+
+		this._image = image;
+		const elImageContent = this.elImage.find(".annotation-image-content");
+		elImageContent.empty();
+		elImageContent.append(this._image);
 
 		this.dispatchEvent({
 			type: "annotation_changed",

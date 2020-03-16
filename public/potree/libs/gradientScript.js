@@ -8,12 +8,12 @@ viewer.setBackground("gradient"); // ["skybox", "gradient", "black", "white"];
 viewer.setMinNodeSize(10);
 viewer.loadSettingsFromURL();
 
- viewer.loadGUI(() => {
-     viewer.setLanguage('en');
-     $("#menu_appearance").next().show();
-     $("#menu_tools").next().show();
-     $("#menu_scene").next().show();
- });
+//  viewer.loadGUI(() => {
+//      viewer.setLanguage('en');
+//      $("#menu_appearance").next().show();
+//      $("#menu_tools").next().show();
+//      $("#menu_scene").next().show();
+//  });
 
 // viewer.scene.view.position.set(1441.04, -826.93, 1604.68);
 // viewer.scene.view.lookAt(new THREE.Vector3(296.27, -162.42, 786.24));
@@ -36,10 +36,6 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
             let elTitle = $(`
                 <span>
                     About Annotations
-                    <img src="${Potree.resourcePath}/icons/goto.svg" 
-                        name="action_set_scene"
-                        class="annotation-action-icon" 
-                        style="filter: invert(1);" />
                 </span>
             `);
             elTitle.find("img[name=action_set_scene]").click( (event) => {
@@ -53,9 +49,11 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
                 title: elTitle,
                 cameraPosition: [285153.891, 5207513.696, 450.305],
                 cameraTarget: [285093.891, 5207463.696, 400.305],
-                description: `<ul><li>Click on the annotation label to move a predefined view.</li> 
-                <li>Click on the icon to execute the specified action.</li>
-                In this case, the action will bring you to another scene and point cloud.</ul>`
+                description: `<ul><li>Annotations will store text and images at certain points.</li> 
+                <img src="/public/assets/images/digital_draft_3.png" alt="test image" width="200px" height="200px">
+                </ul>`,
+                image: '<ul></ul>', //fungerer ikke
+                description2: '<ul><li>Dette er en test</li></ul>' //same as above
             });
 
             viewer.scene.annotations.add(aAbout1);
