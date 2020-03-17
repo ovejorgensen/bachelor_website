@@ -41,18 +41,20 @@ Potree.loadPointCloud("potree/myData/pointclouds/samplePage/cloud.js", "samplePa
     material.size = 1;
     viewer.fitToScreen();
 
-        // Load 3D lines
+    // Load 3D lines
     var params = {}
     params.lineMaterial = new THREE.LineMaterial({
         color: 0xff0000,
         linewidth: 0.003,
-        dashed: true
+        dashed: false
     }); 
 
     GeoJSON("assets/mygeodata/flightpath2.geojson", params, viewer.scene.scene);
 
 });
 
+//Converts GeoJSON to 3D lines that are inserted into the view. Has to be manually 
+//given coordinates to match the already loaded pointcloud.
 GeoJSON = function(url, params, scene) {
     $.ajax({
         url: url ,
@@ -60,13 +62,13 @@ GeoJSON = function(url, params, scene) {
         success: function(geojson) {
             var positions = [];
 
-            for (var i=0; i<geojson.features.length; i++) {
+            for (var i=2100; i<geojson.features.length-2400; i++) {
                 
                 var coord = geojson.features[i].geometry.coordinates;
                 var geotype = geojson.features[i].geometry.type;
                 
                 if (geotype.toLowerCase() == 'point') {
-                    if(i==geojson.features.length-1){
+                    if(i==geojson.features.length-2401){
                         var lineGeometry = new THREE.LineGeometry();
                         lineGeometry.setPositions( positions );
 
@@ -108,7 +110,7 @@ document.getElementById('btn6').onclick=function(){
         let animationPath = new Potree.AnimationPath(path2);
         animationPath.closed = true;
     
-        let start = 1050;
+        let start = 0;
         let end = Infinity;
         let speed = 200; 
         let animation = animationPath.animate(start, end, speed, t => {
