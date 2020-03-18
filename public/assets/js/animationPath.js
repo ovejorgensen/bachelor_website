@@ -15,14 +15,6 @@ let drone = new THREE.Mesh(
 );
 viewer.scene.scene.add(drone);
 
-// var loader = new GLTFLoader();
-
-// loader.load( 'assets/3d_assets/drone.glb', function ( gltf ) {
-// 	scene.add( gltf.scene );
-// }, undefined, function ( error ) {
-//     console.error( error );
-// });
-
 let gradientName = "TURBO";
 let gradient = Potree.Gradients[gradientName];
 
@@ -40,74 +32,78 @@ Potree.loadPointCloud("potree/myData/pointclouds/samplePage/cloud.js", "samplePa
     material.shape = Potree.PointShape.CIRCLE;
     material.size = 1;
     viewer.fitToScreen();
-
-    // Load 3D lines
-    var params = {}
-    params.lineMaterial = new THREE.LineMaterial({
-        color: 0xff0000,
-        linewidth: 0.003,
-        dashed: false
-    }); 
-
-    GeoJSON("assets/mygeodata/flightpath2.geojson", params, viewer.scene.scene);
-
 });
 
-//Converts GeoJSON to 3D lines that are inserted into the view. Has to be manually 
-//given coordinates to match the already loaded pointcloud.
-GeoJSON = function(url, params, scene) {
-    $.ajax({
-        url: url ,
-        dataType: 'json',
-        success: function(geojson) {
-            var positions = [];
+GeoJSONConverter = function(geoObj, params, scene) {
+    let positions = [];
+    let start = 2100;
+    let stop = 2400;
+        
+    for (let i=start; i<geoObj.features.length-stop; i++) {
+        
+        let coord = geoObj.features[i].geometry.coordinates;
+        let geotype = geoObj.features[i].geometry.type;
+        // let lat = coord[0]*100000-1022212+4111287;
+        let lat = coord[0]*100000+3089075;
+        // let long = coord[1]*100000-5971866+256387;
+        let long = coord[1]*100000-5715479;
+        
+        if (geotype.toLowerCase() == 'point') {
+            if(i==geoObj.features.length-stop-1){
+                let lineGeometry = new THREE.LineGeometry();
+                lineGeometry.setPositions( positions );
 
-            for (var i=2100; i<geojson.features.length-2400; i++) {
-                
-                var coord = geojson.features[i].geometry.coordinates;
-                var geotype = geojson.features[i].geometry.type;
-                
-                if (geotype.toLowerCase() == 'point') {
-                    if(i==geojson.features.length-2401){
-                        var lineGeometry = new THREE.LineGeometry();
-                        lineGeometry.setPositions( positions );
-
-                        var line = new THREE.Line2(lineGeometry, params.lineMaterial);
-                        scene.add(line);
-                    }
-                    else if(i>0 && coord[0]!=geojson.features[i-1].geometry.coordinates[0]){
-                        positions.push( coord[1]*100000-5971866+256387, coord[0]*100000-1022212+4111287, coord[2]); 
-                        if(Math.trunc(coord[0]*100000-1022212+4111287)!= Math.trunc(geojson.features[i-1].geometry.coordinates[0]*100000-1022212+4111287)){
-                            path.push([coord[1]*100000-5971866+256387, coord[0]*100000-1022212+4111287, coord[2]]);
-                        }
-                    }
-                    
-                } else if (geotype.toLowerCase() == 'linestring') {
-                        for (var j=0; j<coord.length; j++) {
-                            positions.push( coord[j][0]*10000+1208211.34+296.27+284746.34, coord[j][1]*10000-353764.8980-162+5207179.8980, 350 );                    
-                        }
-
-                        var lineGeometry = new THREE.LineGeometry();
-                        lineGeometry.setPositions( positions );
-
-                        var line = new THREE.Line2(lineGeometry, params.lineMaterial);
-
-                        scene.add(line);
-                } else {
-                    console.log(geojson.features[i].geometry.type + 'Geometry type not (yet) supported');
-                }
+                let line = new THREE.Line2(lineGeometry, params.lineMaterial);
+                scene.add(line);
             }
-        },
-        error: function(req, status, err) {
-            console.log('Potree: error loading geojson', status, err );
+            else if(i>0){
+                positions.push( long, lat, coord[2]); 
+                path.push([long, lat, coord[2]]);
+            }
+            
+        } else if (geotype.toLowerCase() == 'linestring') {
+                for (let j=0; j<coord.length; j++) {
+                    positions.push( coord[j][0], coord[j][1], 350 );                    
+                }
+
+                let lineGeometry = new THREE.LineGeometry();
+                lineGeometry.setPositions( positions );
+
+                let line = new THREE.Line2(lineGeometry, params.lineMaterial);
+
+                scene.add(line);
+        } else {
+            console.log(geoObj.features[i].geometry.type + 'Geometry type not (yet) supported');
         }
-    });
+    }
 }
+
+// Load 3D lines
+let params = {};
+params.lineMaterial = new THREE.LineMaterial({
+    color: 0xff0000,
+    linewidth: 0.003,
+}); 
+
+function reqListener() {
+    var data = JSON.parse(this.responseText);
+    GeoJSONConverter(data, params, viewer.scene.scene)
+}
+  
+function reqError(err) {
+    console.log('Error while loading GeoJSON :-S', err);
+}
+
+var oReq = new XMLHttpRequest();
+oReq.onload = reqListener;
+oReq.onerror = reqError;
+oReq.open('get', 'assets/mygeodata/flightpath2.geojson', true);
+oReq.send();
 
 document.getElementById('btn6').onclick=function(){ 
 
-        let path2 = path.map(v => new THREE.Vector3(...v));
-        let animationPath = new Potree.AnimationPath(path2);
+        let pathMap = path.map(v => new THREE.Vector3(...v));
+        let animationPath = new Potree.AnimationPath(pathMap);
         animationPath.closed = true;
     
         let start = 0;
@@ -115,7 +111,6 @@ document.getElementById('btn6').onclick=function(){
         let speed = 200; 
         let animation = animationPath.animate(start, end, speed, t => {
             animation.repeat = true;
-    
             // t is a value between 0 and 1.
             // use getPoint(t) to map from t to the position on the animation path
             let point = animation.getPoint(t);

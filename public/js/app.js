@@ -1,6 +1,5 @@
 window.addEventListener('load', () => {
     const el = $('#app');
-    let scriptbool = false;
     
     // Compile Handlebar Templates
     errorTemplate = Handlebars.compile($('#error-template').html());
@@ -12,10 +11,10 @@ window.addEventListener('load', () => {
     const router = new Router({
         mode: 'history',
         page404: (path) => {
-        const html = errorTemplate({
-            message: `The path '/${path}' does not exist on this site`,
-        });
-        el.html(html); 
+            const html = errorTemplate({
+                message: `The path '/${path}' does not exist on this site`,
+            });
+            el.html(html); 
         },
     });
 
@@ -46,7 +45,6 @@ window.addEventListener('load', () => {
     router.add('/sample3', () => {
         let html = potreeTemplate();
         el.html(html);
-        // $("body").append('<script type="module" src="potree/libs/three.js/build/three.module.js"></script>');
         $("body").append('<script src="assets/js/functions.js"></script>');
         $("body").append('<script src="assets/js/animationPath.js"></script>');
     });
