@@ -61,17 +61,19 @@ GeoJSONConverter = function(geoObj, params, scene) {
                 path.push([long, lat, coord[2]]);
             }
             
-        } else if (geotype.toLowerCase() == 'linestring') {
-                for (let j=0; j<coord.length; j++) {
-                    positions.push( coord[j][0], coord[j][1], 350 );                    
-                }
+        } 
+        else if (geotype.toLowerCase() == 'linestring') {
+            let posLineString = [];
+            for (let j=0; j<coord.length; j++) {
+                posLineString.push( coord[j][0], coord[j][1], 350 );                    
+            }
 
-                let lineGeometry = new THREE.LineGeometry();
-                lineGeometry.setPositions( positions );
+            let lineGeometry = new THREE.LineGeometry();
+            lineGeometry.setPositions( posLineString );
 
-                let line = new THREE.Line2(lineGeometry, params.lineMaterial);
+            let line = new THREE.Line2(lineGeometry, params.lineMaterial);
 
-                scene.add(line);
+            scene.add(line);
         } else {
             console.log(geoObj.features[i].geometry.type + 'Geometry type not (yet) supported');
         }
@@ -101,24 +103,23 @@ oReq.open('get', 'assets/mygeodata/flightpath2.geojson', true);
 oReq.send();
 
 document.getElementById('btn6').onclick=function(){ 
+    let pathMap = path.map(v => new THREE.Vector3(...v));
+    let animationPath = new Potree.AnimationPath(pathMap);
+    animationPath.closed = true;
 
-        let pathMap = path.map(v => new THREE.Vector3(...v));
-        let animationPath = new Potree.AnimationPath(pathMap);
-        animationPath.closed = true;
-    
-        let start = 0;
-        let end = Infinity;
-        let speed = 200; 
-        let animation = animationPath.animate(start, end, speed, t => {
-            animation.repeat = true;
-            // t is a value between 0 and 1.
-            // use getPoint(t) to map from t to the position on the animation path
-            let point = animation.getPoint(t);
-            drone.position.copy(point);
-        });
-        window.animation = animation;
+    let start = 0;
+    let end = Infinity;
+    let speed = 200; 
+    let animation = animationPath.animate(start, end, speed, t => {
+        animation.repeat = true;
+        // t is a value between 0 and 1.
+        // use getPoint(t) to map from t to the position on the animation path
+        let point = animation.getPoint(t);
+        drone.position.copy(point);
+    });
+    window.animation = animation;
 
-        window.animationPath = animationPath;
+    window.animationPath = animationPath;
 }
 
 

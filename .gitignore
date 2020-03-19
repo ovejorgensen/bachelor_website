@@ -2,6 +2,7 @@
 node_modules
 package-lock.json
 .env
+.vscode
 
 public/potree/myData/pointclouds/nuPage/data
 public/potree/myData/pointclouds/samplePage
