@@ -2780,6 +2780,14 @@ input[type="button"].btn-block {
   background-color: silver !important;
 }
 
+#pointBudget{
+  position: absolute;
+  padding-left: 0;
+  padding-top: 0;
+  background-color: green;
+  z-index: 2000;
+}
+
 #toolButton {
   height: 30px; 
   width: 30px; 

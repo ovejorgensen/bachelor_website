@@ -86,6 +86,15 @@
 
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5">
+        <div class="pointBudget">
+            <h3>Point Budget</h3>
+            <nav>
+                <p>Min</p>
+                <input id="setPoints" type="range" min="0.5" class="slider" max="10" step="0.5" value="2" data-orientation="vertical" onchange="rangevalue.value=value"><p>Max</p>
+                <output id="rangevalue">2</output>
+            </nav>
+        </div>
+
         <!-- Application Root -->
         <div id="app"></div>
         </div>
@@ -124,14 +133,16 @@
                 <button  type="button" id="btn1" class="toolButton"><i class="fa fa-cogs"></i></button>
                 <button  class="toolButton" type="button"><i class="fa fa-download"></i></button>
                 <button  class="toolButton" type="button"><i class="fa fa-folder"></i></button>
-                <button  class="toolButton" type="button"><i class="fa fa-info"></i></button>
-                <button  class="toolButton" type="button"><i class="fa fa-map"></i></button>
-                <button  class="toolButton" type="button" id="btn6"><i class="fa fa-tags"></i>
+                <button  class="toolButton" id="btn4" type="button"><i class="fa fa-info"></i></button>
+                <button  class="toolButton" id="btn5" type="button"><i class="fa fa-map"></i></button>
+                <button  class="toolButton" type="button" id="btn6"><i class="fa fa-cogs"></i>
                 </button>
                 <button  class="toolButton" type="button" id="btn7"><i class="fa fa-tasks"></i>
                 </button>
             </nav>
+            
           </div>
+         
         </script>
 
         <!-- Upload Template -->

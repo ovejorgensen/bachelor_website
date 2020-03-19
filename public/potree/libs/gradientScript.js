@@ -7,6 +7,7 @@ viewer.setPointBudget(1 * 1000 * 1000);
 viewer.setBackground("gradient"); // ["skybox", "gradient", "black", "white"];
 viewer.setMinNodeSize(10);
 viewer.loadSettingsFromURL();
+viewer.setDescription(viewer.getPointBudget());
 
 //  viewer.loadGUI(() => {
 //      viewer.setLanguage('en');
@@ -25,11 +26,13 @@ let x = 0;
 let y = 400
 
 
+
 Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e => {    
     let pointcloud = e.pointcloud;
     let material = pointcloud.material;
     viewer.scene.addPointCloud(pointcloud);
     material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+    
 
     {
         {
@@ -44,19 +47,18 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
             });
             elTitle.toString = () => "About Annotations";
 
-            let aAbout1 = new Potree.Annotation({
+             About1 = new Potree.Annotation({
                 position: [285093.891, 5207463.696, 400.305],
                 title: elTitle,
                 cameraPosition: [285153.891, 5207513.696, 450.305],
                 cameraTarget: [285093.891, 5207463.696, 400.305],
                 description: `<ul><li>Annotations will store text and images at certain points.</li> 
-                <img src="/public/assets/images/digital_draft_3.png" alt="test image" width="200px" height="200px">
-                </ul>`,
-                image: '<ul></ul>', //fungerer ikke
-                description2: '<ul><li>Dette er en test</li></ul>' //same as above
+                <img src="bachelor_wesite/public/assets/images/digital_draft_3.png" alt="test image" width="200px" height="200px">
+                </ul>`
+              
             });
 
-            viewer.scene.annotations.add(aAbout1);
+            viewer.scene.annotations.add(About1);
         }
     }
 
@@ -74,4 +76,35 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
     material.size = 1;
     viewer.fitToScreen();
 
+
+
+
+
 });
+
+
+document.getElementById('btn4').onclick = function(){
+    let anno = document.getElementsByClassName(".annotation");
+    if( anno.display === "false"){
+        console.log("1");
+        anno.display = "true";
+    } else {
+        anno.display = "false";
+        console.log("2");
+    }
+}
+
+let points = document.getElementById("setPoints");
+var currPoint = document.getElementById("rangevalue");
+
+points.addEventListener('mousedown', function(){
+    viewer.setPointBudget(currPoint.value * 1000 * 1000);
+    console.log(currPoint.value, viewer.getPointBudget());
+})
+
+
+
+
+
+
+
