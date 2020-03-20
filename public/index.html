@@ -18,7 +18,11 @@
     <link rel="stylesheet" type="text/css" href="potree/libs/spectrum/spectrum.css">
     <link rel="stylesheet" type="text/css" href="potree/libs/jstree/themes/mixed/style.css">
 
+
+    <link rel="stylesheet" type="text/css" href="assets/css/dropzone.css">
+
     <link rel="icon" href="assets/images/logo.png">
+
   </head>
   <body >
     <script src="potree/libs/jquery/jquery-3.1.1.min.js"></script>
@@ -39,7 +43,8 @@
 		<div id="mainDiv" class="wrapper d-flex align-items-stretch">
       <nav id="sidebar">
 				<div class="p-4 pt-5">
-		  		<a href="/" class="img logo rounded-circle mb-5" style="background-image: url(assets/images/logo.png);"></a>
+          <!-- <a href="/" id="mainLogo"></a> -->
+		  		<a href="/" class="img logo mb-5" style="background-image: url(assets/images/logo.png);"></a>
 	        <ul class="list-unstyled components mb-5">
 	          <li class="active">
 	            <a href="/" data-toggle="collapse" aria-expanded="false">Home</a>
@@ -59,12 +64,8 @@
               </ul>
             </li>
             <li>
-              <a href="#uploadSubmenu" data-toggle="collapse" araia-expanded="false">Upload file</a>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile01"
-                  aria-describedby="inputGroupFileAddon01">
-                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-              </div>
+              <a href="/upload" data-toggle="collapse" araia-expanded="false">Upload file</a>
+
             </li>
 	        </ul>
 
@@ -86,15 +87,6 @@
 
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5">
-        <div class="pointBudget">
-            <h3>Point Budget</h3>
-            <nav>
-                <p>Min</p>
-                <input id="setPoints" type="range" min="0.5" class="slider" max="10" step="0.5" value="2" data-orientation="vertical" onchange="rangevalue.value=value"><p>Max</p>
-                <output id="rangevalue">2</output>
-            </nav>
-        </div>
-
         <!-- Application Root -->
         <div id="app"></div>
         </div>
@@ -133,21 +125,47 @@
                 <button  type="button" id="btn1" class="toolButton"><i class="fa fa-cogs"></i></button>
                 <button  class="toolButton" type="button"><i class="fa fa-download"></i></button>
                 <button  class="toolButton" type="button"><i class="fa fa-folder"></i></button>
-                <button  class="toolButton" id="btn4" type="button"><i class="fa fa-info"></i></button>
-                <button  class="toolButton" id="btn5" type="button"><i class="fa fa-map"></i></button>
-                <button  class="toolButton" type="button" id="btn6"><i class="fa fa-cogs"></i>
+                <button  class="toolButton" type="button"><i class="fa fa-info"></i></button>
+                <button  class="toolButton" type="button"><i class="fa fa-map"></i></button>
+                <button  class="toolButton" type="button" id="btn6"><i class="fa fa-tags"></i>
                 </button>
                 <button  class="toolButton" type="button" id="btn7"><i class="fa fa-tasks"></i>
                 </button>
             </nav>
-            
           </div>
-         
         </script>
 
         <!-- Upload Template -->
         <script id="upload-template" type="text/x-handlebars-template">
-          <h1>Upload File</h1>
+          <h1 id="fileUpload">Upload Files</h1>
+          <div class="container">
+            <div class="row">
+
+              <div class="col-md-4">
+                <h2>Upload Point Cloud</h2>
+                <p>The accepted point cloud format is a .las or .laz file converted to the Potree format with Potree Converter</p>
+                <form ref='uploadForm' 
+                id='uploadForm' 
+                method='post' 
+                encType="multipart/form-data">
+                  <input type="file" name="sampleFile" />
+                  <input type='submit' value='Upload!' />
+              </form>  
+              </div>
+
+              <div class="col-md-4">
+                <h2>Upload Flightpath</h2>
+                <P>Accepted flightpath format is a GeoJSON-object with points and/or line-strings. The coordinate array has to be "[latitude, longitude, altitude]"</P>
+                <form action='/' method='POST' encType="multipart/form-data">
+                  <input type="file" name="geoUpload" />
+                  <input type='submit' value='Upload!' />
+              </form>  
+              <!-- <form action="/file-upload" class="dropzone needsclick dz-clickable" id="my-dropzone">
+                <input type="file" name="file" />
+              </form> -->
+              </div>
+            </div>
+          </div>
         </script>
 
         <!-- Error Template -->
@@ -162,6 +180,7 @@
     <script src="assets/js/popper.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/dropzone.js"></script>
 
     <script src="assets/js/lineMaterial.js"></script>
 

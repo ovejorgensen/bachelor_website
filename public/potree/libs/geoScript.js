@@ -15,7 +15,7 @@ viewer.loadSettingsFromURL();
      $("#menu_scene").next().show();
  });
 
-let gradientName = "TURBO";
+let gradientName = "YELLOW_GREEN";
 let gradient = Potree.Gradients[gradientName];
 
 let x = 0;
@@ -76,7 +76,7 @@ GeoJSON = function(url, params, scene) {
                         scene.add(line);
                     }
                     else if(i>0 && geojson.features[i].geometry.coordinates[0]!=geojson.features[i-1].geometry.coordinates[0]){
-                        positions.push( coord[0]*100000-5971866+283048, coord[2]*100000-1022212+5206745, parseInt(altitude)+200); 
+                        positions.push( coord[0]*100000-5971866+284348, coord[2]*100000-1022212+5206745, parseInt(altitude)+200); 
                         // console.log(coord[0]*100000-5971866+284448, coord[2]*100000-1022212+5206745, parseInt(altitude));
                     }
                     

@@ -5,3 +5,9 @@
 	height: 70%; 
 	margin: auto;
 }	
+
+#fileUpload{
+	border-bottom: 1px solid black;
+	width: 40%;
+	margin-bottom: 50px;
+}

@@ -48,7 +48,7 @@ GeoJSON = function(url, params, scene) {
                         scene.add(line);
                     }
                     else if(i>0 && coord[0]!=geojson.features[i-1].geometry.coordinates[0]){
-                        positions.push( coord[1]*100000-5971866+256387, coord[0]*100000-1022212+4111287, coord[2]); 
+                        positions.push( coord[1]*100000-5971866+255787, coord[0]*100000-1022212+4111287, coord[2]); 
                     }
                     
                 } else if (geotype.toLowerCase() == 'linestring') {

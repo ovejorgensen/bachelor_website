@@ -23,6 +23,14 @@ window.addEventListener('load', () => {
         el.html(html);
     });
 
+    router.add('/s', () => {
+        //prevents /s from giving 404 error
+    });
+
+    // router.add('/geoUpload', () => {
+
+    // });
+
     router.add('/upload', () => {
         html = uploadTemplate();
         el.html(html);
