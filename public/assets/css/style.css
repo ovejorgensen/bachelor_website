@@ -2780,8 +2780,12 @@ input[type="button"].btn-block {
   background-color: silver !important;
 }
 
-#pointBudget{
+.pointBudget{
  display:inline-block;
+}
+
+#rangevalue{
+  color: black;
 }
 
 #toolButton {

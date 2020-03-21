@@ -52,7 +52,9 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
                 cameraPosition: [285153.891, 5207513.696, 450.305],
                 cameraTarget: [285093.891, 5207463.696, 400.305],
                 description: `<ul><li>Annotations will store text and images at certain points.</li> 
-                <img src="bachelor_wesite/public/assets/images/digital_draft_3.png" alt="test image" width="200px" height="200px">
+                <img src="assets/images/digital_draft_3.png" alt="test image" width="150px" height="150px">
+                <img src="assets/images/digital_draft_2.png" alt="test image" width="100px" height="100px">
+                <img src="assets/images/digital_draft_1.png" alt="test image" width="300px" height="150px">
                 </ul>`
               
             });
