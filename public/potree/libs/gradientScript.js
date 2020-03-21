@@ -7,7 +7,6 @@ viewer.setPointBudget(1 * 1000 * 1000);
 viewer.setBackground("gradient"); // ["skybox", "gradient", "black", "white"];
 viewer.setMinNodeSize(10);
 viewer.loadSettingsFromURL();
-viewer.setDescription(viewer.getPointBudget());
 
 //  viewer.loadGUI(() => {
 //      viewer.setLanguage('en');
@@ -82,7 +81,7 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
 
 });
 
-
+/*
 document.getElementById('btn4').onclick = function(){
     let anno = document.getElementsByClassName(".annotation");
     if( anno.display === "false"){
@@ -92,15 +91,8 @@ document.getElementById('btn4').onclick = function(){
         anno.display = "false";
         console.log("2");
     }
-}
+}*/
 
-let points = document.getElementById("setPoints");
-var currPoint = document.getElementById("rangevalue");
-
-points.addEventListener('mousedown', function(){
-    viewer.setPointBudget(currPoint.value * 1000 * 1000);
-    console.log(currPoint.value, viewer.getPointBudget());
-})
 
 
 

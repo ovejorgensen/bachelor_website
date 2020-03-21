@@ -124,6 +124,12 @@
             <nav class="navbar navbar-dark bg-dark fixed-bottom " id="toolbar" >
                 <button  type="button" id="btn1" class="toolButton"><i class="fa fa-cogs"></i></button>
                 <button  class="toolButton" type="button"><i class="fa fa-download"></i></button>
+                <div class="pointBudget">
+                  <nav>
+                      <input id="setPoints" type="range" min="0.5" class="slider" max="10" step="0.5" value="2" data-orientation="vertical" onchange="rangevalue.value=value">
+                      <output id="rangevalue">2</output>
+                  </nav>
+              </div>  
                 <button  class="toolButton" type="button"><i class="fa fa-folder"></i></button>
                 <button  class="toolButton" type="button"><i class="fa fa-info"></i></button>
                 <button  class="toolButton" type="button"><i class="fa fa-map"></i></button>
@@ -132,6 +138,7 @@
                 <button  class="toolButton" type="button" id="btn7"><i class="fa fa-tasks"></i>
                 </button>
             </nav>
+            
           </div>
         </script>
 
