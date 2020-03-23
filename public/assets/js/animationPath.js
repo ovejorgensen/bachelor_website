@@ -1,4 +1,3 @@
-
 window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
 
 viewer.setEDLEnabled(true);
@@ -40,7 +39,6 @@ GeoJSONConverter = function(geoObj, params, scene) {
     let stop = 2400;
         
     for (let i=start; i<geoObj.features.length-stop; i++) {
-        
         let coord = geoObj.features[i].geometry.coordinates;
         let geotype = geoObj.features[i].geometry.type;
         // let lat = coord[0]*100000-1022212+4111287;
@@ -96,30 +94,68 @@ function reqError(err) {
     console.log('Error while loading GeoJSON :-S', err);
 }
 
-var oReq = new XMLHttpRequest();
-oReq.onload = reqListener;
-oReq.onerror = reqError;
-oReq.open('get', 'assets/mygeodata/flightpath2.geojson', true);
-oReq.send();
+// let showPath = false;
+// if(showPath){
+//     var oReq = new XMLHttpRequest();
+//     oReq.onload = reqListener;
+//     oReq.onerror = reqError;
+//     oReq.open('get', 'assets/mygeodata/flightpath2.geojson', true);
+//     oReq.send();
+// }
 
-document.getElementById('btn6').onclick=function(){ 
-    let pathMap = path.map(v => new THREE.Vector3(...v));
-    let animationPath = new Potree.AnimationPath(pathMap);
-    animationPath.closed = true;
 
-    let start = 0;
-    let end = Infinity;
-    let speed = 200; 
-    let animation = animationPath.animate(start, end, speed, t => {
-        animation.repeat = true;
-        // t is a value between 0 and 1.
-        // use getPoint(t) to map from t to the position on the animation path
-        let point = animation.getPoint(t);
-        drone.position.copy(point);
-    });
-    window.animation = animation;
+let flightpath = document.getElementById("flightPathBtn");
+let fpToggle = document.getElementById("fpToggle");
+flightpath.onclick=function(){ 
+    if(fpToggle.innerHTML == "Show Flightpath"){
+        fpToggle.innerHTML="Hide Flightpath";
+        var oReq = new XMLHttpRequest();
+        oReq.onload = reqListener;
+        oReq.onerror = reqError;
+        oReq.open('get', 'assets/mygeodata/flightpath2.geojson', true);
+        oReq.send();    } 
+    else {
+        fpToggle.innerHTML="Show Flightpath";
+    }
+}
 
-    window.animationPath = animationPath;
+let going = false;
+let first = true;
+let animation;
+let flightSpan = document.getElementById('flightSpan');
+document.getElementById('animBtn').onclick=function(){ 
+    if(first){
+        going=true;
+        first=false;
+        let pathMap = path.map(v => new THREE.Vector3(...v));
+        let animationPath = new Potree.AnimationPath(pathMap);
+        animationPath.closed = true;
+
+        let start = 0;
+        let end = Infinity;
+        let speed = 200; 
+        animation = animationPath.animate(start, end, speed, t => {
+            animation.repeat = true;
+            // t is a value between 0 and 1.
+            // use getPoint(t) to map from t to the position on the animation path
+            let point = animation.getPoint(t);
+            drone.position.copy(point);
+        });
+        window.animation = animation;
+
+        window.animationPath = animationPath;
+    }
+    else if (going) {
+        going=false;
+        animation.pause();
+        viewer.scene.scene.remove(drone);
+        flightSpan.innerHTML = "Resume Animation";
+    }else{
+        going=true;
+        viewer.scene.scene.add(drone);
+        animation.resume();
+        flightSpan.innerHTML = "Stop Animation";
+    }
 }
 
 

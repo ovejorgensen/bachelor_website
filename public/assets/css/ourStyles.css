@@ -11,3 +11,60 @@
 	width: 40%;
 	margin-bottom: 50px;
 }
+
+#potreeToolbar{
+	z-index: 100;
+	position: absolute;
+	bottom: 0;	
+	width: 100%;
+	background-color: #252A37 !important;
+}
+
+nav .navbar-brand{
+	color: #E3CF5B !important;
+}
+
+.toolButton{
+	background-color: transparent;
+	border: none;
+	color: lightgray;
+}
+.toolButton:hover{color: gray;}
+
+.navbar-brand{
+	color: lightgray !important;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.navbar-brand {
+	position: relative;
+	display: inline-block;
+  }
+
+  /* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: relative;
+	display: inline-block;
+	text-align: center;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 100px;
+  }
+  .dropdown-content button {
+	  background-color: transparent;
+	  border: none;
+	  width: 100%;
+  }
+  /* Change color of dropdown links on hover */
+.dropdown-content button:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}

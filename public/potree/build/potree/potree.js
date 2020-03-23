@@ -4976,6 +4976,17 @@
 			[0.9, new THREE.Color(0.7883, 0.9323, 0.4514)],
 			[1, new THREE.Color(0.9804, 0.9804, 0.4314)]
 		],
+		YELLOW_GREEN_2: [
+			[0, new THREE.Color(0.0610, 0.4319, 0.4864)],
+			[0.1, new THREE.Color(0.0000, 0.5099, 0.5319)],
+			[0.2, new THREE.Color(0.0000, 0.5881, 0.5569)],
+			[0.3, new THREE.Color(0.1370, 0.6650, 0.5614)],
+			[0.4, new THREE.Color(0.2906, 0.7395, 0.5477)],
+			[0.5, new THREE.Color(0.4453, 0.8099, 0.5201)],
+			[0.6, new THREE.Color(0.6102, 0.8748, 0.4850)],
+			[0.7, new THREE.Color(0.7883, 0.9323, 0.4514)],
+			[1, new THREE.Color(0.9804, 0.9804, 0.4314)]
+		],
 		VIRIDIS: [
 			[0.0, new THREE.Color(0.267, 0.005, 0.329)],
 			[0.1, new THREE.Color(0.283, 0.141, 0.458)],

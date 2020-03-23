@@ -27,10 +27,6 @@ window.addEventListener('load', () => {
         //prevents /s from giving 404 error
     });
 
-    // router.add('/geoUpload', () => {
-
-    // });
-
     router.add('/upload', () => {
         html = uploadTemplate();
         el.html(html);
@@ -55,6 +51,19 @@ window.addEventListener('load', () => {
         el.html(html);
         $("body").append('<script src="assets/js/functions.js"></script>');
         $("body").append('<script src="assets/js/animationPath.js"></script>');
+    });
+
+    router.add('/sample4', () => {
+        let html = potreeTemplate();
+        el.html(html);
+        $("body").append('<script src="assets/js/functions.js"></script>');
+        $("body").append('<script src="assets/js/groupOne.js"></script>');
+    });
+    router.add('/sample5', () => {
+        let html = potreeTemplate();
+        el.html(html);
+        $("body").append('<script src="assets/js/functions.js"></script>');
+        $("body").append('<script src="assets/js/groupOne2.js"></script>');
     });
 
     // Navigate app to current url

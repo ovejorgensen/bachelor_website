@@ -1,9 +1,16 @@
 
-document.getElementById('btn1').onclick=function(){ 
-    if(viewer.getBackground() == "gradient") viewer.setBackground("skybox") ;
-    else viewer.setBackground("gradient");
+document.getElementById('gradBtn').onclick=function(){ 
+    viewer.setBackground("gradient");
 }
-
+document.getElementById('skyBtn').onclick=function(){ 
+    viewer.setBackground("skybox");
+}
+document.getElementById('blackBtn').onclick=function(){ 
+    viewer.setBackground("black");
+}
+document.getElementById('whiteBtn').onclick=function(){ 
+    viewer.setBackground("white");
+}
 
 let points = document.getElementById("setPoints");
 var currPoint = document.getElementById("rangevalue");
