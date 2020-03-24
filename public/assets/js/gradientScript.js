@@ -37,34 +37,140 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
     
 
     {
-        {
+        { //Defining annotations
             let elTitle = $(`
-                <span>
-                    About Annotations
+                <span id="spanID1">
+                    Annotations #1
                 </span>
             `);
-            elTitle.find("img[name=action_set_scene]").click( (event) => {
-                event.stopPropagation();
+            
+            elTitle.toString = () => "Annotations #1";
+
+            event.stopPropagation();
+             About1 = new Potree.Annotation({
+                position: [285393.891, 5207463.696, 400.305],
+                title: elTitle,
+                cameraPosition: [285453.891, 5207513.696, 450.305],
+                cameraTarget: [285393.891, 5207463.696, 400.305],
+                description:"",
+            });
+            let elTitle2 = $(`
+                <span id="spanID2">
+                    Annotations #2
+                </span>
+            `);
+            elTitle2.find("img[name=action_set_scene]").click( (event) => {
                 viewer.setScene(viewer.scene); 
             });
-            elTitle.toString = () => "About Annotations";
+            elTitle2.toString = () => "Annotations #2";
 
-             About1 = new Potree.Annotation({
-                position: [285093.891, 5207463.696, 400.305],
-                title: elTitle,
-                cameraPosition: [285153.891, 5207513.696, 450.305],
-                cameraTarget: [285093.891, 5207463.696, 400.305],
-                description: `<ul><li>Annotations will store text and images at certain points.</li> 
-                <img src="assets/images/digital_draft_3.png" alt="test image" width="150px" height="150px">
-                <img src="assets/images/digital_draft_2.png" alt="test image" width="100px" height="100px">
-                <img src="assets/images/digital_draft_1.png" alt="test image" width="300px" height="150px">
-                </ul>`
-              
+                event.stopPropagation();
+             About2 = new Potree.Annotation({
+                position: [284793.891, 5207463.696, 400.305],
+                title: elTitle2,
+                cameraPosition: [284853.891, 5207513.696, 450.305],
+                cameraTarget: [284793.891, 5207463.696, 400.305],
+                description:"",
+            });
+            let elTitle3 = $(`
+            <span id="spanID3">
+                Annotations #3
+            </span>
+            `);
+            elTitle3.find("img[name=action_set_scene]").click( (event) => {
+                viewer.setScene(viewer.scene); 
+            });
+            elTitle3.toString = () => "Annotations #2";
+
+                event.stopPropagation();
+            About3 = new Potree.Annotation({
+                position: [284293.891, 5207063.696, 300.305],
+                title: elTitle3,
+                cameraPosition: [285353.891, 5208113.696, 350.305],
+                cameraTarget: [284293.891, 5207063.696, 300.305],
+                description:"",
             });
 
             viewer.scene.annotations.add(About1);
+            viewer.scene.annotations.add(About2);
+            viewer.scene.annotations.add(About3);   
+
+        } //Show/hide annotations
+         el = document.getElementById("anno1");
+         a1 = document.getElementById("spanID1");
+
+         a1.onclick = function(){
+            el2.style.display = "none";
+            el3.style.display = "none";
+            if(el.style.display == "none" && el2.style.display == "none" && el3.style.display == "none"){
+                el.style.display = "block";
+                }else{
+                el.style.display = "none";
+            }
+        }
+        el2 = document.getElementById("anno2");
+        a2 = document.getElementById("spanID2");
+
+        a2.onclick = function(){
+            el.style.display = "none";
+            el3.style.display = "none";
+            if(el.style.display == "none" && el2.style.display == "none" && el3.style.display == "none"){
+            el2.style.display = "block";
+            }else{
+            el2.style.display = "none";
+        }}
+
+        el3 = document.getElementById("anno3");
+        a3 = document.getElementById("spanID3");
+
+        a3.onclick = function(){
+            el2.style.display = "none";
+            el.style.display = "none";
+            if(el.style.display == "none" && el2.style.display == "none" && el3.style.display == "none"){
+            el3.style.display = "block";
+            }else{
+            el3.style.display = "none";
+        }}
+
+        close = document.getElementById("closer");
+        close.onclick = function(){
+            el.style.display = "none";  
+            
+        }
+        
+        close2 = document.getElementById("closer2");
+        close2.onclick = function(){
+            el2.style.display = "none";  
+        }
+        close3 = document.getElementById("closer3");
+        close3.onclick = function(){
+            el3.style.display = "none";  
         }
     }
+
+    //MODAL SETUP
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("anno-image");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+    modal.style.display = "none";
+    } //end modal
+ 
+
 
     material.activeAttributeName = "elevation";
     material.gradient = gradient;

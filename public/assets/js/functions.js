@@ -47,5 +47,6 @@ var currPoint = document.getElementById("rangevalue");
 
 points.addEventListener('mouseup', function(){
     viewer.setPointBudget(currPoint.value * 1000 * 1000);
-    console.log(currPoint.value, viewer.getPointBudget());
 })
+
+
