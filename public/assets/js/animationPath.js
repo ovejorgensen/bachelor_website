@@ -17,7 +17,7 @@ viewer.scene.scene.add(drone);
 let gradientName = "TURBO";
 let gradient = Potree.Gradients[gradientName];
 
-let path = [];
+// let path = [];
 
 Potree.loadPointCloud("potree/myData/pointclouds/samplePage/cloud.js", "samplePage", e => {
     let pointcloud = e.pointcloud;
@@ -33,50 +33,7 @@ Potree.loadPointCloud("potree/myData/pointclouds/samplePage/cloud.js", "samplePa
     viewer.fitToScreen();
 });
 
-GeoJSONConverter = function(geoObj, params, scene) {
-    let positions = [];
-    let start = 2100;
-    let stop = 2400;
-        
-    for (let i=start; i<geoObj.features.length-stop; i++) {
-        let coord = geoObj.features[i].geometry.coordinates;
-        let geotype = geoObj.features[i].geometry.type;
-        // let lat = coord[0]*100000-1022212+4111287;
-        let lat = coord[0]*100000+3089075;
-        // let long = coord[1]*100000-5971866+256387;
-        let long = coord[1]*100000-5715479;
-        
-        if (geotype.toLowerCase() == 'point') {
-            if(i==geoObj.features.length-stop-1){
-                let lineGeometry = new THREE.LineGeometry();
-                lineGeometry.setPositions( positions );
-
-                let line = new THREE.Line2(lineGeometry, params.lineMaterial);
-                scene.add(line);
-            }
-            else if(i>0){
-                positions.push( long, lat, coord[2]); 
-                path.push([long, lat, coord[2]]);
-            }
-            
-        } 
-        else if (geotype.toLowerCase() == 'linestring') {
-            let posLineString = [];
-            for (let j=0; j<coord.length; j++) {
-                posLineString.push( coord[j][0], coord[j][1], 350 );                    
-            }
-
-            let lineGeometry = new THREE.LineGeometry();
-            lineGeometry.setPositions( posLineString );
-
-            let line = new THREE.Line2(lineGeometry, params.lineMaterial);
-
-            scene.add(line);
-        } else {
-            console.log(geoObj.features[i].geometry.type + 'Geometry type not (yet) supported');
-        }
-    }
-}
+gradientSelector("potree/myData/pointclouds/samplePage/cloud.js");
 
 // Load 3D lines
 let params = {};
@@ -84,31 +41,23 @@ params.lineMaterial = new THREE.LineMaterial({
     color: 0xff0000,
     linewidth: 0.003,
 }); 
-
+let pathAnim = [];
 function reqListener() {
     var data = JSON.parse(this.responseText);
-    GeoJSONConverter(data, params, viewer.scene.scene)
+    GeoJSONConverter2(data, params, viewer.scene.scene, 3089075, -5715479, 2100, 2400);
 }
   
 function reqError(err) {
     console.log('Error while loading GeoJSON :-S', err);
 }
 
-// let showPath = false;
-// if(showPath){
-//     var oReq = new XMLHttpRequest();
-//     oReq.onload = reqListener;
-//     oReq.onerror = reqError;
-//     oReq.open('get', 'assets/mygeodata/flightpath2.geojson', true);
-//     oReq.send();
-// }
-
-
 let flightpath = document.getElementById("flightPathBtn");
 let fpToggle = document.getElementById("fpToggle");
 flightpath.onclick=function(){ 
     if(fpToggle.innerHTML == "Show Flightpath"){
         fpToggle.innerHTML="Hide Flightpath";
+        document.getElementById('controlDiv').style.display = 'block';
+
         var oReq = new XMLHttpRequest();
         oReq.onload = reqListener;
         oReq.onerror = reqError;
@@ -116,18 +65,19 @@ flightpath.onclick=function(){
         oReq.send();    } 
     else {
         fpToggle.innerHTML="Show Flightpath";
+        document.getElementById('controlDiv').style.display = 'none';
     }
 }
 
-let going = false;
-let first = true;
 let animation;
-let flightSpan = document.getElementById('flightSpan');
-document.getElementById('animBtn').onclick=function(){ 
-    if(first){
-        going=true;
+let first = true;
+document.getElementById('anim1').onclick=function(){
+    if(!first)animation.resume();
+    else{
+        viewer.scene.scene.add(drone);
+        
         first=false;
-        let pathMap = path.map(v => new THREE.Vector3(...v));
+        let pathMap = pathAnim.map(v => new THREE.Vector3(...v));
         let animationPath = new Potree.AnimationPath(pathMap);
         animationPath.closed = true;
 
@@ -142,20 +92,15 @@ document.getElementById('animBtn').onclick=function(){
             drone.position.copy(point);
         });
         window.animation = animation;
-
         window.animationPath = animationPath;
     }
-    else if (going) {
-        going=false;
-        animation.pause();
-        viewer.scene.scene.remove(drone);
-        flightSpan.innerHTML = "Resume Animation";
-    }else{
-        going=true;
-        viewer.scene.scene.add(drone);
-        animation.resume();
-        flightSpan.innerHTML = "Stop Animation";
-    }
 }
+document.getElementById('anim2').onclick=function(){animation.pause()}
+document.getElementById('anim3').onclick=function(){
+    animation.pause();
+    viewer.scene.scene.remove(drone);
+    first = true;
+}
+
 
 

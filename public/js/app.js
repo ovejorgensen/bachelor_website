@@ -23,48 +23,44 @@ window.addEventListener('load', () => {
         el.html(html);
     });
 
-    router.add('/s', () => {
-        //prevents /s from giving 404 error
-    });
-
     router.add('/upload', () => {
         html = uploadTemplate();
         el.html(html);
     });
 
     router.add('/sample1', () => {
-        let html = potreeTemplate();
-        el.html(html);
-        $("body").append('<script src="assets/js/functions.js"></script>');
-        $("body").append('<script src="potree/libs/gradientScript.js"></script>');
+        potreeRoute("assets/js/gradientScript.js");;
     });
 
     router.add('/sample2', () => {
-        let html = potreeTemplate();
-        el.html(html);
-        $("body").append('<script src="assets/js/functions.js"></script>');
-        $("body").append('<script src="potree/libs/geoScript.js"></script>');
+        potreeRoute("assets/js/geoScript.js");
     });
 
     router.add('/sample3', () => {
-        let html = potreeTemplate();
-        el.html(html);
-        $("body").append('<script src="assets/js/functions.js"></script>');
-        $("body").append('<script src="assets/js/animationPath.js"></script>');
+        potreeRoute("assets/js/animationPath.js");
     });
 
     router.add('/sample4', () => {
-        let html = potreeTemplate();
-        el.html(html);
-        $("body").append('<script src="assets/js/functions.js"></script>');
-        $("body").append('<script src="assets/js/groupOne.js"></script>');
+        potreeRoute("assets/js/groupOne.js");
     });
+
     router.add('/sample5', () => {
+        potreeRoute("assets/js/groupOne2.js");
+    });
+    
+    function potreeRoute(source){
         let html = potreeTemplate();
         el.html(html);
-        $("body").append('<script src="assets/js/functions.js"></script>');
-        $("body").append('<script src="assets/js/groupOne2.js"></script>');
-    });
+
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "assets/js/functions.js";
+        document.body.appendChild(s);
+        var s2 = document.createElement("script");
+        s2.type = "text/javascript";
+        s2.src = source;
+        document.body.appendChild(s2);
+    }
 
     // Navigate app to current url
     router.navigateTo(window.location.pathname);
@@ -77,6 +73,10 @@ window.addEventListener('load', () => {
 
         // Navigate to clicked url
         const href = target.attr('href');
+
+        if(href=="#drops") return;
+        if(target.attr('class')=='navbar-brand') return;
+
         const path = href.substr(href.lastIndexOf('/'));
         router.navigateTo(path);
       });

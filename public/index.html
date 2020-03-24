@@ -100,9 +100,9 @@
         <script id="home-template" type="text/x-handlebars-template">      
             <div class="container-fluid">
               <div class="row">
-                <h1 class="heading">Avium 3D cloudpoints </h1></div>
+                <h1 class="heading">Avium 3D cloudpoints </h1></div><br><br>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="card">
                     <div class="card-header">
                       <img class="card-img-top" src="assets/images/digital_draft_3.png" alt="photo of sample 1" id="img1">
@@ -110,10 +110,22 @@
                     <div class="card-body">
                       <h4 class="card-title">Sample #1</h4>
                       <p class="card-category">Railway Track</p>
-                      <a href="/sample1" class="btn" style="color:orange; background-color: black;">Click me</a>
+                      <a href="/sample1" class="btn" style="color:#E3CF5B; background-color: #252A37;">Click me</a>
                     </div>
                     <div class="card-footer">
                       <p>Version 0.0.1</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-header">
+                      <img class="card-img-top" src="assets/images/maze.png" alt="photo of sample 1" id="img1">
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title">Sample #4</h4>
+                      <p class="card-category">Simulation Maze</p>
+                      <a href="/sample4" class="btn" style="color:#E3CF5B; background-color: #252A37;">Click me</a>
                     </div>
                   </div>
                 </div>
@@ -136,7 +148,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item dropdown">
-                    <button class="toolButton"><i class="fa fa-cogs"></i><br>Background</button>
+                    <button class="toolButton"><i class="fa fa-cogs"></i><br>Background <span class="fa fa-caret-down"></span></button>
                     <div class="dropdown-content">
                       <button id="gradBtn">Gradient</button>
                       <button id="skyBtn">Skybox</button>
@@ -145,25 +157,33 @@
                     </div>
                   </li>
                   <li class="nav-item dropdown">
-                    <button class="toolButton"><i class="fa fa-area-chart"></i><br>Gradient</button>
+                    <button class="toolButton"><i class="fa fa-area-chart"></i><br>Gradient <span class="fa fa-caret-down"></span></button>
                     <div class="dropdown-content">
-                      <button>Gradient 1</button>
-                      <button>Gradient 2</button>
-                      <button>Gradient 3</button>
+                      <button id="grad1">Gradient 1</button>
+                      <button id="grad2">Gradient 2</button>
+                      <button id="grad3">Gradient 3</button>
                     </div>
                   </li>
                   <li class="nav-item dropdown">
-                    <button class="toolButton"><i class="fa fa-bar-chart-o"></i><br>Point Density</button>
+                    <button class="toolButton"><i class="fa fa-bar-chart-o"></i><br>Point Density <span class="fa fa-caret-down"></span></button>
                     <div class="dropdown-content">
                       <input id="setPoints" type="range" min="0.5" class="slider" max="10" step="0.5" value="1" data-orientation="vertical" onchange="rangevalue.value=value">
                       <br><output id="rangevalue">1</output>
                     </div>
                   </li>
-                  <li class="nav-item">
+                  <li id="fpLi" class="nav-item">
                     <button id="flightPathBtn" class="toolButton"><i class='fa fa-map-o'></i><br><span id="fpToggle">Show Flightpath</span></button>
                   </li>
-                  <li class="nav-item">
-                    <button id="animBtn" class="toolButton"><i class='fa fa-paper-plane-o'></i><br><span id="flightSpan">Show Flight</span></button>
+                  <!-- <li id="animLi" class="nav-item">
+                    <button id="animBtn" class="toolButton"><i class='fa fa-paper-plane-o'></i><br><span id="flightSpan">Show Flight </span></button>
+                  </li> -->
+                  <li id="controlDiv" class="nav-item dropdown">
+                    <button class="toolButton"><i class="fa fa-paper-plane-o"></i><br>Flight Controls <span class="fa fa-caret-down"></span></button>
+                    <div id="controls" class="dropdown-content">
+                      <button id="anim1"><span class="fa fa-play"></span></button>
+                      <button id="anim2"><span class="fa fa-pause"></span></button>
+                      <button id="anim3"><span class="fa fa-stop"></span></button>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -219,6 +239,7 @@
     <script src="assets/js/dropzone.js"></script>
 
     <script src="assets/js/lineMaterial.js"></script>
+    <script src="assets/js/geoJSON.js"></script>
 
     <script src="scripts/axios/dist/axios.min.js"></script>
     <script src="scripts/handlebars/dist/handlebars.min.js"></script>

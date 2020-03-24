@@ -1,3 +1,6 @@
+document.getElementById('fpLi').innerHTML="";
+document.getElementById('controlDiv').innerHTML="";
+
 window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
 
 viewer.setEDLEnabled(true);
