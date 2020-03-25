@@ -75,6 +75,9 @@ nav .navbar-brand{
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-/* .vertical-centered-box{
-	display: block;
-} */
+#loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: none;
+}
