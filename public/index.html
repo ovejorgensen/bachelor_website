@@ -188,31 +188,6 @@
                 </ul>
               </div>
             </nav>  
-            <div class="annotation-sidebar" id="anno1" style="display: none">
-                <div class="anno-close">
-                    <i class="fa fa-window-close-o" aria-hidden="true" id="closer"></i>
-                </div>
-                <div class="anno-title">Annotation 1</div>
-                <div class="anno-description">Her er en fin test. Denne teksten kunne gjerne vært litt lengre. hva med nå??
-                    <div class="anno-container">
-                        <img src="assets/images/digital_draft_3.png" id="anno-image" alt="test image">
-                        <!-- The Modal -->
-                          <div id="myModal" class="modal">
-                              <!-- The Close Button -->
-                              <span class="close">&times;</span>
-                              <!-- Modal Content (The Image) -->
-                              <img class="modal-content" id="img01">  
-                              <!-- Modal Caption (Image Text) -->
-                              <div id="caption"></div>
-                        </div>
-                        <img src="assets/images/digital_draft_3.png" id="anno-image" alt="test image">
-                        <img src="assets/images/digital_draft_3.png" id="anno-image" alt="test image">
-                        <img src="assets/images/digital_draft_3.png" id="anno-image" alt="test image">
-                        <img src="assets/images/digital_draft_3.png" id="anno-image" alt="test image">
-                        <img src="assets/images/digital_draft_3.png" id="anno-image" alt="test image">
-                     </div>
-                </div>
-            </div>
             <div class="annotation-sidebar" id="anno2" style="display: none">
                 <div class="anno-close">
                     <i class="fa fa-window-close-o" aria-hidden="true" id="closer2"></i>
@@ -226,8 +201,111 @@
                 </div>
                 <div class="anno-title">Test 3</div>
                 <div class="anno-description">Beskrivelseeee</div>
-          </div>
             </div>
+            <div class="annotation-sidebar" id="anno1" style="display: none">
+                <div class="anno-close">
+                    <i class="fa fa-window-close-o" aria-hidden="true" id="closer"></i>
+                </div>
+                <div class="anno-title">Annotation 1</div>
+                <div class="anno-description">Her er en fin test. Denne teksten kunne gjerne vært litt lengre. hva med nå??
+                    <div class="anno-container">
+                        <!-- Images used to open the lightbox -->
+                            <img src="assets/images/digital_draft_3.png" id="anno-image" alt="test image" onclick="openModal();currentSlide(1)" class="hover-shadow">
+                            <img src="assets/images/digital_draft_1.png" id="anno-image" alt="test image" onclick="openModal();currentSlide(2)" class="hover-shadow">
+                            <img src="assets/images/digital_draft_2.png" id="anno-image" alt="test image" onclick="openModal();currentSlide(3)" class="hover-shadow">
+                            <img src="assets/images/forest.png" id="anno-image" alt="test image" onclick="openModal();currentSlide(4)" class="hover-shadow">
+                          <!-- The Modal/Lightbox -->
+                          <div id="myModal" class="modal">
+                            <span class="close cursor" onclick="closeModal()">&times;</span>
+                            <div class="modal-content">
+  
+                              <div class="mySlides">
+                                <div class="numbertext">1 / 4</div>
+                                <img src="assets/images/digital_draft_3.png" style="width:50%">
+                                <p id="caption">Image one</p>
+                              </div>
+  
+                              <div class="mySlides">
+                                <div class="numbertext">2 / 4</div>
+                                <img src="assets/images/digital_draft_1.png" style="width:50%">
+                                <p id="caption">Image two</p>
+                              </div>
+  
+                              <div class="mySlides">
+                                <div class="numbertext">3 / 4</div>
+                                <img src="assets/images/digital_draft_2.png" style="width:50%">
+                                <p id="caption">Image three</p>
+                              </div>
+  
+                              <div class="mySlides">
+                                <div class="numbertext">4 / 4</div>
+                                <img src="assets/images/forest.png" style="width:50%">
+                                <p id="caption">Image four</p>
+                              </div>
+  
+            
+                              <!-- Next/previous controls -->
+                              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                              <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  
+                              <!-- Caption text -->
+                              <div class="caption-container">
+                                <p id="caption"></p>
+                              </div>
+                              <!-- Thumbnail image controls -->
+                              <script>
+                              // Open the Modal
+                              function openModal() {
+                                document.getElementById("myModal").style.display = "block";
+                              }
+                              
+                              // Close the Modal
+                              function closeModal() {
+                                document.getElementById("myModal").style.display = "none";
+                              }
+                              
+                              var slideIndex = 1;
+                              showSlides(slideIndex);
+                              
+                              // Next/previous controls
+                              function plusSlides(n) {
+                                showSlides(slideIndex += n);
+                              }
+                              
+                              // Thumbnail image controls
+                               function currentSlide(n) {
+                                showSlides(slideIndex = n);
+                              }
+                              
+                            
+                              function showSlides(n) {
+                              var i;
+                              var slides = document.getElementsByClassName("mySlides");
+                              var dots = document.getElementsByClassName("demo");
+                              var captionText = document.getElementById("caption");
+                              
+                                if (n > slides.length) {slideIndex = 1}
+                                if (n < 1) {slideIndex = slides.length}
+                                for (i = 0; i < slides.length; i++) {
+                                  slides[i].style.display = "none";
+                                }
+                                for (i = 0; i < dots.length; i++) {
+                                  dots[i].className = dots[i].className.replace(" active", "");
+                                }
+                                slides[slideIndex-1].style.display = "block";
+                               // dots[slideIndex-1].className += " active";
+                               // captionText.innerHTML = dots[slideIndex-1].alt;
+                              }
+                              </script>
+                             
+                            </div>
+                          </div>
+                           
+                       </div> 
+                </div>
+            </div>
+          </div>
+        </div>
         </script>
         <!-- Upload Template -->
         <script id="upload-template" type="text/x-handlebars-template">
@@ -264,7 +342,7 @@
         </script>
 
         <!-- Error Template -->
-        <script id="error-template" type="text/x-handlebars-template">
+          <script id="error-template" type="text/x-handlebars-template">
           <h1>404 Page NOT Found</h1>
           <p>{{message}}</p>
         </script>
