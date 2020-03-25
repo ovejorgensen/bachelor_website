@@ -28,8 +28,12 @@ window.addEventListener('load', () => {
         el.html(html);
     });
 
+    router.add('/uploaded', () => {
+        potreeRoute("assets/js/uploadPage.js");
+    });
+
     router.add('/sample1', () => {
-        potreeRoute("assets/js/gradientScript.js");;
+        potreeRoute("assets/js/gradientScript.js");
     });
 
     router.add('/sample2', () => {
@@ -42,6 +46,10 @@ window.addEventListener('load', () => {
 
     router.add('/sample4', () => {
         potreeRoute("assets/js/groupOne.js");
+    });
+
+    router.add('/sample5', () => {
+        potreeRoute("assets/js/groupOne2.js");
     });
 
     router.add('/sample5', () => {

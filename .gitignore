@@ -5,3 +5,5 @@ package-lock.json
 .vscode
 
 public/potree/myData/pointclouds
+
+conversion/output/*

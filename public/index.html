@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets\css\style.css">
     <link rel="stylesheet" href="assets\css\ourStyles.css">
+    <link rel="stylesheet" href="assets\css\loading.css">
     	
     <link rel="stylesheet" type="text/css" href="potree/build/potree/potree.css">
     <link rel="stylesheet" type="text/css" href="potree/libs/jquery-ui/jquery-ui.min.css">
@@ -80,14 +81,35 @@
 
 	      </div>
       </nav>
-
+      <div id="loading">
+        <span class="back">
+          <span>L</span>
+          <span>o</span>
+          <span>a</span>
+          <span>d</span>
+          <span>i</span>
+          <span>n</span>
+          <span>g</span>
+          <span> </span>
+          <span>P</span>
+          <span>o</span>
+          <span>i</span>
+          <span>n</span>
+          <span>t</span>
+          <span> </span>
+          <span>C</span>
+          <span>l</span>
+          <span>o</span>
+          <span>u</span>
+          <span>d</span>
+        </span>
+      </div>
       <div id="collapser" class="p-4 p-md-5">
 
       <button type="button" id="sidebarCollapse" class="btn btn-primary">
         <i class="fa fa-bars"></i>
         <span class="sr-only">Toggle Menu</span>
       </button>
-
     </div>
 
         <!-- Page Content  -->
@@ -239,13 +261,10 @@
               <div class="col-md-4">
                 <h2>Upload Point Cloud</h2>
                 <p>The accepted point cloud format is a .las or .laz file converted to the Potree format with Potree Converter</p>
-                <form ref='uploadForm' 
-                id='uploadForm' 
-                method='post' 
-                encType="multipart/form-data">
-                  <input type="file" name="sampleFile" />
+                <form action='/' method='POST' encType="multipart/form-data">
+                  <input type="file" name="txtUpload" />
                   <input type='submit' value='Upload!' />
-              </form>  
+                </form>  
               </div>
 
               <div class="col-md-4">
@@ -254,7 +273,7 @@
                 <form action='/' method='POST' encType="multipart/form-data">
                   <input type="file" name="geoUpload" />
                   <input type='submit' value='Upload!' />
-              </form>  
+                </form>  
               <!-- <form action="/file-upload" class="dropzone needsclick dz-clickable" id="my-dropzone">
                 <input type="file" name="file" />
               </form> -->
@@ -269,9 +288,9 @@
           <p>{{message}}</p>
         </script>
       </div>
+
     </div>
 
-    <!-- <script src="assets/js/jquery.min.js"></script> -->
     <script src="assets/js/popper.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
