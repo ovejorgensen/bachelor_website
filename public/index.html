@@ -313,15 +313,11 @@
         <!-- Upload Template -->
         <script id="upload-template" type="text/x-handlebars-template">
 
-          <h1 id="fileUpload">Upload Files</h1>
-          <div class="container">
-            <div class="row">
-
+          <h1 id="fileUpload">Upload Point Cloud</h1>
               <div class="col-md-4">
-                <h2>Upload Point Cloud</h2>
                 <p>The accepted point cloud format is a .txt file where each line has "X, Y, Z" coorinates representing a point</p>
                 <form action='/' method='POST' encType="multipart/form-data">
-                  <input class="file" type="file" name="txtUpload" />
+                  <input class="file" type="file" name="txtUpload" /><br><br>
                   <input id="uploader" type='submit' value='Upload!' />
                 </form>  
               </div>
