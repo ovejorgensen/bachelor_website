@@ -92,7 +92,9 @@ function animationHandler(size, speed, active){
             window.animationPath = animationPath;
         }
     }
-    document.getElementById('anim2').onclick=function(){animation.pause()}
+    document.getElementById('anim2').onclick=function(){
+        animation.pause();
+    }
     document.getElementById('anim3').onclick=function(){
         animation.pause();
         viewer.scene.scene.remove(drone);

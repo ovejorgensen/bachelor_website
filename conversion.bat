@@ -16,4 +16,3 @@ potreeconverter conversion\lasfiles\output.las ^
 		-o conversion\output\
 
 del conversion\lasfiles\output.las
-

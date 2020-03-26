@@ -6,18 +6,23 @@ const { spawn } = require('child_process');
 const app = express();
 const port = process.env.PORT || 3000;
 
+
+// Set public folder as root
+app.use(express.static('public'));
+
 app.use(fileUpload());
+app.use(express.static('conversion'));
 
 //handles file uploading
 app.post('/', function(req, res) {
   if(req.files.geoUpload){
     var file = req.files.geoUpload;
-    var filename = file.name;
-    file.mv('public/uploads/geoData/'+ filename, function (err) {
+    var filename = "uploaded.geojson";
+    file.mv('public/assets/mygeodata/upload/'+ filename, function (err) {
       if (err) res.send(err);
       else {
         console.log(filename + " uploaded successfully");
-        res.sendFile(`${__dirname}/public/index.html`);
+        res.sendFile(`${__dirname}/public/upload.html`);
       }
     });
   }
@@ -47,11 +52,6 @@ app.post('/', function(req, res) {
     });
   }
 });
-
-app.use(express.static('conversion'));
-
-// Set public folder as root
-app.use(express.static('public'));
 
 // Allow front-end access to node_modules folder
 app.use('/scripts', express.static(`${__dirname}/node_modules/`));
