@@ -59,6 +59,9 @@ window.addEventListener('load', () => {
     router.add('/sample5', () => {
         potreeRoute("assets/js/groupOne2.js");
     });
+    router.add('/sample6', () => {
+        potreeRoute("assets/js/flightPlanner.js");
+    });
     
     function potreeRoute(source){
         let html = potreeTemplate();
