@@ -30,34 +30,95 @@ Potree.loadPointCloud("potree/myData/pointclouds/samplePage/cloud.js", "samplePa
 
 let flightplanner = document.getElementById("flightPlanBtn");
 let active = false;
+let pointContainer = document.getElementById("annoPoints");
+
+
+
+
+close = document.getElementById("closerPoints");
+close.onclick = function(){
+    pointContainer.style.display = "none";  
+    
+}
+
+//Display or hide the container 
 
 flightplanner.onclick = function(){
+    if(pointContainer.style.display == "none"){
+        pointContainer.style.display = "block";
+    } else{
+        pointContainer.style.display ="none";
+    }
     if(active == false){
         active = true;
-        console.log(active);
     }else{
         active = false;
-        console.log(active);
-
     }
 }
 
+var listPoints = [];
+var container = document.getElementById("pointContainer");
+var index = 1;
+var coordinate = document.getElementById("pointCoordinate");
+var listMeasures = [];
 
-viewer.renderer.domElement.addEventListener("mousedown", (e) => {
-    if(active == true){
+
+
+viewer.renderer.domElement.addEventListener("mousedown", (e) => { //clicking plan route button
+    if(active == true){ 
+
         let mouse = viewer.inputHandler.mouse;
         const camera = viewer.scene.getActiveCamera(); 
     
         let hit = Potree.Utils.getMousePointCloudIntersection(mouse,camera,viewer, viewer.scene.pointclouds);
     
         //make point
-        let measure = new Potree.Measure();
-        measure.showDistances = false;
-        measure.showCoordinates = true;
-        measure.maxMarkers = 1;
-        measure.addMarker(new THREE.Vector3(hit.location.x, hit.location.y, hit.location.z));
-    
-        viewer.scene.addMeasurement(measure);
+        if(hit != null){
+            let measure = new Potree.Measure();
+            measure.showDistances = false; //default true
+            measure.showCoordinates = false;
+            measure.addMarker(new THREE.Vector3(hit.location.x, hit.location.y, hit.location.z+50)); //new point with XYZ, z+50 is to make the lines visible
+            listMeasures.push(measure); //used for coordinate presentation
+            viewer.scene.addMeasurement(measure); 
+            listPoints.push(hit.location.x, hit.location.y, hit.location.z+50); //+50 is added to make the lines visible
+
+            console.log(listPoints);
+            //presentation in the container
+            container.innerHTML += "Point # " + index +"<br>";
+            coordinates.innerHTML += "[" + hit.location.x + "],[" + hit.location.y + "],[" + hit.location.z+50 + "]" + "<br></br>";
+            index+=1;    
+        
+           
+        }
+
+        //Toggle coordinates in the list of measure
+        coordinate.onclick = function(){
+            for(var i = 0; i<=listMeasures.length; i++){
+                if(listMeasures[i].showCoordinates == false ){
+                    listMeasures[i].showCoordinates = true; 
+                } else {
+                    listMeasures[i].showCoordinates = false; 
+                }
+            }
+        }
+
+        //Setup for lines between points
+        {
+
+        let geometry = new THREE.BufferGeometry();
+        let material = new THREE.LineBasicMaterial({ 
+            color: 0xff0000, 
+            linewidth: 5 });
+        let buffer = new Float32Array(listPoints);
+        geometry.addAttribute('position', new THREE.BufferAttribute(buffer, 3)); //Adding data from list of points with 3 variables.
+        geometry.computeBoundingSphere();
+
+        let line = new THREE.Line(geometry, material);
+        viewer.scene.scene.add(line);
+        }
+     
     }
     
 })
+
+

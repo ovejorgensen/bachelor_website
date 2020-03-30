@@ -322,12 +322,30 @@ a:hover, a:visited, a:link, a:active{
 	max-width:		500px;
 	width:			500px;
 }
+#pointContainer.anno-description{
+	font-size: 1.0em;
+	max-height: 100%;
+}
 
 .annotation-description-close{
 	filter:			invert(100%);
 	float:			right;
 	opacity:		0.5;
 	margin:			0px 0px 8px 8px;
+}
+
+#exportPoints{
+	position: absolute;
+	bottom: 5%;
+	align-self: left;
+	padding: 5px;
+
+}
+#pointCoordinate{
+	position: relative;
+	bottom: 0;
+	float: right;
+	padding: 5px;
 }
 
 	
