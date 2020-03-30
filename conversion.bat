@@ -15,5 +15,4 @@ set PATH=%PATH%;"%~dp0conversion\PotreeConverter";
 potreeconverter conversion\lasfiles\output.las ^
 		-o conversion\output\
 
-del conversion\lasfiles\output.las
-
+del conversion\lasfiles\*.las

@@ -22,7 +22,6 @@
     <link rel="stylesheet" type="text/css" href="assets/css/dropzone.css">
 
     <link rel="icon" href="assets/images/logo.png">
-
   </head>
   <body >
     <script src="potree/libs/jquery/jquery-3.1.1.min.js"></script>
@@ -73,8 +72,7 @@
               </ul>
             </li>
             <li>
-              <a href="/upload" data-toggle="collapse" araia-expanded="false">Upload file</a>
-
+              <a href="/upload" data-toggle="collapse" araia-expanded="false">Upload Point Cloud</a>
             </li>
 	        </ul>
 
@@ -169,6 +167,9 @@
                       <input id="setPoints" type="range" min="0.5" class="slider" max="10" step="0.5" value="1" data-orientation="vertical" onchange="rangevalue.value=value">
                       <br><output id="rangevalue">1</output>
                     </div>
+                  </li>
+                  <li id="uploadLi" class="nav-item">
+                    <button id="modBtn" class="toolButton"><i class="fa fa-upload"></i><br>Upload Flightpath</button>
                   </li>
                   <li id="fpLi" class="nav-item">
                     <button id="flightPathBtn" class="toolButton"><i class='fa fa-map-o'></i><br><span id="fpToggle">Show Flightpath</span></button>
@@ -323,29 +324,13 @@
         <!-- Upload Template -->
         <script id="upload-template" type="text/x-handlebars-template">
 
-          <h1 id="fileUpload">Upload Files</h1>
-          <div class="container">
-            <div class="row">
-
+          <h1 id="fileUpload">Upload Point Cloud</h1>
               <div class="col-md-4">
-                <h2>Upload Point Cloud</h2>
-                <p>The accepted point cloud format is a .las or .laz file converted to the Potree format with Potree Converter</p>
+                <p>The accepted point cloud format is a .txt file where each line has "X, Y, Z" coorinates representing a point</p>
                 <form action='/' method='POST' encType="multipart/form-data">
-                  <input type="file" name="txtUpload" />
+                  <input class="file" type="file" name="txtUpload" /><br><br>
                   <input id="uploader" type='submit' value='Upload!' />
                 </form>  
-              </div>
-
-              <div class="col-md-4">
-                <h2>Upload Flightpath</h2>
-                <P>Accepted flightpath format is a GeoJSON-object with points and/or line-strings. The coordinate array has to be "[latitude, longitude, altitude]"</P>
-                <form action='/' method='POST' encType="multipart/form-data">
-                  <input type="file" name="geoUpload" />
-                  <input type='submit' value='Upload!' />
-                </form>  
-              <!-- <form action="/file-upload" class="dropzone needsclick dz-clickable" id="my-dropzone">
-                <input type="file" name="file" />
-              </form> -->
               </div>
             </div>
           </div>
@@ -360,10 +345,27 @@
 
     </div>
 
+    <!-- Modal -->
+    <div id="uploadModal" class="newModal">
+      <div class="newModal-content">
+        <div class="newModal-header">
+          <h2>Upload Flightpath</h2>
+          <span class="close" id="close">&times;</span>
+        </div>
+        <div class="newModal-body">
+          <P>Accepted flightpath format is a GeoJSON-object with points and/or line-strings. The coordinate array has to be
+            "[latitude, longitude, altitude]"</P>
+          <form action='/' method='POST' encType="multipart/form-data">
+            <input type="file" name="geoUpload" /><br>
+            <input type='submit' value='Upload!' />
+          </form>  
+        </div>
+      </div>
+    </div>
+
     <script src="assets/js/popper.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/dropzone.js"></script>
 
     <script src="assets/js/lineMaterial.js"></script>
     <script src="assets/js/geoJSON.js"></script>

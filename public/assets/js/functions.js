@@ -1,17 +1,12 @@
 //Change Background
-document.getElementById('gradBtn').onclick=function(){ 
-    viewer.setBackground("gradient");
-}
-document.getElementById('skyBtn').onclick=function(){ 
-    viewer.setBackground("skybox");
-}
-document.getElementById('blackBtn').onclick=function(){ 
-    viewer.setBackground("black");
-}
-document.getElementById('whiteBtn').onclick=function(){ 
-    viewer.setBackground("white");
-}
+document.getElementById('gradBtn').onclick=function(){ viewer.setBackground("gradient") }
+document.getElementById('skyBtn').onclick=function(){ viewer.setBackground("skybox") }
+document.getElementById('blackBtn').onclick=function(){ viewer.setBackground("black") }
+document.getElementById('whiteBtn').onclick=function(){ viewer.setBackground("white") }
 
+
+// TODO, when this function is called the old point cloud and everything related to
+// it has to be completely removed before creating a new one.
 function newGradientCloud(gradient, url) {
     window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
 
@@ -48,5 +43,3 @@ var currPoint = document.getElementById("rangevalue");
 points.addEventListener('mouseup', function(){
     viewer.setPointBudget(currPoint.value * 1000 * 1000);
 })
-
-

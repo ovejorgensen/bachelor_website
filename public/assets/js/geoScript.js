@@ -81,6 +81,14 @@ function reqError(err) {
 
 let flightpath = document.getElementById("flightPathBtn");
 let fpToggle = document.getElementById("fpToggle");
+
+fpToggle.innerHTML="Hide Flightpath";
+var oReq = new XMLHttpRequest();
+oReq.onload = reqListener;
+oReq.onerror = reqError;
+oReq.open('get', 'assets/mygeodata/flightpath.geojson', true);
+oReq.send();
+
 flightpath.onclick=function(){ 
     if(fpToggle.innerHTML == "Show Flightpath"){
         fpToggle.innerHTML="Hide Flightpath";

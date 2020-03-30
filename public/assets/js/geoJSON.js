@@ -19,7 +19,7 @@ GeoJSONConverter = function(geoObj, params, scene) {
     } 
 }
 
-function flightPathDisplay(url, cloud, animSize, animSpeed){    
+function flightPathDisplay(url, cloud, animSize, animSpeed, show){    
     // Load 3D lines
     let params = {};
     params.lineMaterial = new THREE.LineMaterial({
@@ -38,6 +38,19 @@ function flightPathDisplay(url, cloud, animSize, animSpeed){
     let flightpath = document.getElementById("flightPathBtn");
     let fpToggle = document.getElementById("fpToggle");
     let theBool = true;
+    if(show == true){
+        document.getElementById('controlDiv').style.display = 'block';
+
+        fpToggle.innerHTML="Hide Flightpath";
+        var oReq = new XMLHttpRequest();
+        oReq.onload = reqListener;
+        oReq.onerror = reqError;
+        oReq.open('get', url, true);
+        oReq.send();    
+        
+        animationHandler(animSize, animSpeed, theBool);
+        theBool=false;
+    }
     flightpath.onclick=function(){ 
         if(fpToggle.innerHTML == "Show Flightpath"){
             document.getElementById('controlDiv').style.display = 'block';
@@ -92,7 +105,9 @@ function animationHandler(size, speed, active){
             window.animationPath = animationPath;
         }
     }
-    document.getElementById('anim2').onclick=function(){animation.pause()}
+    document.getElementById('anim2').onclick=function(){
+        animation.pause();
+    }
     document.getElementById('anim3').onclick=function(){
         animation.pause();
         viewer.scene.scene.remove(drone);
