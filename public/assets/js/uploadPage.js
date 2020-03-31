@@ -10,7 +10,7 @@ viewer.loadSettingsFromURL();
 
 newGradientCloud(Potree.Gradients["YELLOW_GREEN_2"], "output/cloud.js");
 
-flightPathDisplay("assets/mygeodata/upload/uploaded.geojson", "output/cloud.js", 5, 50, true);
+flightPathDisplay("assets/mygeodata/upload/uploaded.geojson", "output/cloud.js", 5, 50, false);
 
 // Get the modal
 var modal = document.getElementById("uploadModal");

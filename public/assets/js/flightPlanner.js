@@ -141,11 +141,8 @@ var exporter = document.getElementById('exportPoints');
 exporter.onclick = function(){
 
     //Add coordinates to new list with tab space and newlines
-    for(var i=0; i<listPoints.length; i++){
-        tsvList += `${listPoints[i]} `
-           if(i+1 % 3 == 0){
-               tsvList += '\r\n';
-           }
+    for(var i=0; i<listPoints.length; i+=3){
+        tsvList += listPoints[i].toString()+ " " +listPoints[i+1].toString() + " " +listPoints[i+2].toString() + "\r\n";
     }
     
     download("coordinates.txt", tsvList);

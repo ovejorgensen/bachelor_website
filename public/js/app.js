@@ -30,10 +30,6 @@ window.addEventListener('load', () => {
     router.add('/upload', () => {
         html = uploadTemplate();
         el.html(html);
-
-        document.getElementById('uploader').onclick = function() {
-            document.getElementById('loader').style.display='block';
-        }
     });
 
     router.add('/uploaded', () => {

@@ -330,7 +330,7 @@
 
           <h1 id="fileUpload">Upload Point Cloud</h1>
               <div class="col-md-4">
-                <p>Accepted format:
+                <p>Accepted filetypes:
                   <ul>
                     <li>
                       .LAS file
@@ -343,8 +343,8 @@
                     </li>
                   </ul>
                 </p>
-                <form action='/' method='POST' encType="multipart/form-data">
-                  <input class="file" type="file" name="txtUpload" id="cloudUpload" onchange="checkextension()"/><br>
+                <form action='/' method='POST' encType="multipart/form-data" onSubmit="JavaScript:Loader()">
+                  <input class="file" type="file" name="txtUpload" id="cloudUpload" onchange="checkextension()" required/><br>
                   <input id="uploader" type='submit' value='Upload!' />
                 </form>  
               </div>
