@@ -1,4 +1,4 @@
-function checkextension() {
+function checkExtension() {
     var file = document.querySelector("#cloudUpload");
     if ( /\.(laz|las|txt)$/i.test(file.files[0].name) === false ) { 
         document.getElementById('cloudUpload').value="";
@@ -6,6 +6,6 @@ function checkextension() {
     }
   }
 
-  function Loader(){
-    document.getElementById('loader').style.display='block';
-}
+  function Loader() {
+      document.getElementById('loader').style.display='block';
+  }

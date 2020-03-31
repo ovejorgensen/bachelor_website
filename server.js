@@ -1,6 +1,6 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
-const { spawn } = require('child_process');
+const { exec, spawn } = require('child_process');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 // Set public folder as root
 app.use(express.static('public'));
 
+// Allow the app to upload files and let the server use the conversion directory
 app.use(fileUpload());
 app.use(express.static('conversion'));
 
@@ -24,28 +25,44 @@ app.post('/', function(req, res) {
       }
     });
   }
-  else if(req.files.txtUpload){
-    var file = req.files.txtUpload;
+  else if(req.files.pcUpload){
+    var file = req.files.pcUpload;
     var filename = file.name;
-    file.mv('conversion/txtfiles/'+ filename, function (err) {
+
+    let output;
+    if (filename.charAt(filename.length-1)=="t") output="output.txt";
+    else if(filename.charAt(filename.length-1)=="z") output="output.laz";
+    else output="output.las"
+
+    file.mv('conversion/files/'+ output, function (err) {
       if (err) res.send(err);
       else {
         console.log(filename + " uploaded successfully");
-              
-        const bat = spawn('cmd.exe', ['/c', 'conversion.bat']);
-
-        bat.stdout.on('data', (data) => {
-          console.log(data.toString());
-        });
-        
-        bat.stderr.on('data', (data) => {
-          console.error(data.toString());
-        });
-        
-        bat.on('exit', (code) => {
-          console.log(`Child exited with code ${code}`);
+        console.log("converting cloud...");
+        exec('conversion.bat', (err, stdout) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          console.log(stdout);
+          
           res.sendFile(`${__dirname}/public/upload.html`);
         });
+              
+        // const bat = spawn('cmd.exe', ['/c', 'conversion.bat']);
+
+        // bat.stdout.on('data', (data) => {
+        //   console.log(data.toString());
+        // });
+        
+        // bat.stderr.on('data', (data) => {
+        //   console.error(data.toString());
+        // });
+        
+        // bat.on('exit', (code) => {
+        //   console.log(`Child exited with code ${code}`);
+        //   res.sendFile(`${__dirname}/public/upload.html`);
+        // });
       }
     });
   }

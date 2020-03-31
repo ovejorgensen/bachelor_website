@@ -333,20 +333,21 @@
                 <p>Accepted filetypes:
                   <ul>
                     <li>
-                      .LAS file
+                      LAS-file
                     </li>
                     <li>
-                      .LAZ file
+                      LAZ-file
                     </li>
                     <li>
-                      .txt file where each line has "X, Y, Z" coorinates representing a point
+                      txt-file where each line has "X, Y, Z" coordinates representing a point
                     </li>
                   </ul>
                 </p>
                 <form action='/' method='POST' encType="multipart/form-data" onSubmit="JavaScript:Loader()">
-                  <input class="file" type="file" name="txtUpload" id="cloudUpload" onchange="checkextension()" required/><br>
+                  <input class="file" type="file" name="pcUpload" id="cloudUpload" required/><br>
                   <input id="uploader" type='submit' value='Upload!' />
                 </form>  
+                <br><p><i> Note that large clouds may take a while to load</i></p>
               </div>
             </div>
           </div>
