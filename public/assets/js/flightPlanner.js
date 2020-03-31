@@ -48,6 +48,7 @@ flightplanner.onclick = function(){
         pointContainer.style.display = "block";
     } else{
         pointContainer.style.display ="none";
+
     }
     if(active == false){
         active = true;
@@ -61,6 +62,11 @@ var container = document.getElementById("pointContainer");
 var index = 1;
 var coordinate = document.getElementById("pointCoordinate");
 var listMeasures = [];
+var tsvList = [];
+var coords = document.getElementById("coords");
+container.innerHTML += "Points " +'\t';
+coords.innerHTML += "Coordinates"; 
+
 
 
 
@@ -71,7 +77,7 @@ viewer.renderer.domElement.addEventListener("mousedown", (e) => { //clicking pla
         const camera = viewer.scene.getActiveCamera(); 
     
         let hit = Potree.Utils.getMousePointCloudIntersection(mouse,camera,viewer, viewer.scene.pointclouds);
-    
+
         //make point
         if(hit != null){
             let measure = new Potree.Measure();
@@ -82,14 +88,16 @@ viewer.renderer.domElement.addEventListener("mousedown", (e) => { //clicking pla
             viewer.scene.addMeasurement(measure); 
             listPoints.push(hit.location.x, hit.location.y, hit.location.z+50); //+50 is added to make the lines visible
 
-            console.log(listPoints);
+            
             //presentation in the container
-            container.innerHTML += "Point # " + index +"<br>";
-            coordinates.innerHTML += "[" + hit.location.x + "],[" + hit.location.y + "],[" + hit.location.z+50 + "]" + "<br></br>";
+            container.innerHTML += index + '\t';
+            coords.innerHTML += hit.location.x  + " "+ hit.location.y  + " "+ hit.location.z+50 +"<br></br>";
+            
             index+=1;    
         
            
         }
+
 
         //Toggle coordinates in the list of measure
         coordinate.onclick = function(){
@@ -118,7 +126,42 @@ viewer.renderer.domElement.addEventListener("mousedown", (e) => { //clicking pla
         }
      
     }
+
+
+
     
 })
 
 
+
+
+var exporter = document.getElementById('exportPoints');
+
+//initiate download
+exporter.onclick = function(){
+
+    //Add coordinates to new list with tab space and newlines
+    for(var i=0; i<listPoints.length; i++){
+        tsvList += `${listPoints[i]} `
+           if(i+1 % 3 == 0){
+               tsvList += '\r\n';
+           }
+    }
+    
+    download("coordinates.txt", tsvList);
+}
+
+function download(filename, data) { //download file with data
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+    
+    
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+}
