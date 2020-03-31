@@ -1,11 +1,9 @@
-require('dotenv').config(); // read .env files
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const { spawn } = require('child_process');
 
 const app = express();
 const port = process.env.PORT || 3000;
-
 
 // Set public folder as root
 app.use(express.static('public'));

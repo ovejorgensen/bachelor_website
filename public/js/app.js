@@ -1,6 +1,10 @@
 window.addEventListener('load', () => {
     const el = $('#app');
     
+    let error = document.getElementById('error-template');
+    let home = document.getElementById('home-template');
+    let upload = document.getElementById('upload-template');
+    let potree = document.getElementById('potree-template');
     // Compile Handlebar Templates
     errorTemplate = Handlebars.compile($('#error-template').html());
     homeTemplate = Handlebars.compile($('#home-template').html());

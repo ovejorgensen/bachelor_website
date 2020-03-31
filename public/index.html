@@ -38,6 +38,8 @@
     <script src="potree/libs/jstree/jstree.js"></script>
     <script src="potree/build/potree/potree.js"></script>
     <script src="potree/libs/plasio/js/laslaz.js"></script>
+
+    <script src="assets/js/index.js"></script>
 		
 		<div id="mainDiv" class="wrapper d-flex align-items-stretch">
       <nav id="sidebar">
@@ -326,9 +328,21 @@
 
           <h1 id="fileUpload">Upload Point Cloud</h1>
               <div class="col-md-4">
-                <p>The accepted point cloud format is a .txt file where each line has "X, Y, Z" coorinates representing a point</p>
+                <p>Accepted format:
+                  <ul>
+                    <li>
+                      .LAS file
+                    </li>
+                    <li>
+                      .LAZ file
+                    </li>
+                    <li>
+                      .txt file where each line has "X, Y, Z" coorinates representing a point
+                    </li>
+                  </ul>
+                </p>
                 <form action='/' method='POST' encType="multipart/form-data">
-                  <input class="file" type="file" name="txtUpload" /><br><br>
+                  <input class="file" type="file" name="txtUpload" id="cloudUpload" onchange="checkextension()"/><br>
                   <input id="uploader" type='submit' value='Upload!' />
                 </form>  
               </div>
@@ -356,7 +370,7 @@
           <P>Accepted flightpath format is a GeoJSON-object with points and/or line-strings. The coordinate array has to be
             "[latitude, longitude, altitude]"</P>
           <form action='/' method='POST' encType="multipart/form-data">
-            <input type="file" name="geoUpload" /><br>
+            <input type="file" name="geoUpload" onchange="checkextension()"/><br>
             <input type='submit' value='Upload!' />
           </form>  
         </div>

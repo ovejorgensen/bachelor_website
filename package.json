@@ -15,7 +15,7 @@
     "url": "git+https://github.com/ovejorgensen/bachelor_website.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ove Kristian Jørgensen and Tor-Fredrik Torgersen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ovejorgensen/bachelor_website/issues"
@@ -25,8 +25,6 @@
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "child_process": "^1.0.2",
-    "dotenv": "^8.2.0",
-    "dropzone": "^5.7.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
     "handlebars": "^4.7.3",
