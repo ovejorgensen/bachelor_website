@@ -6,4 +6,6 @@ package-lock.json
 
 public/potree/myData/pointclouds
 
+public/assets/mygeodata/upload/uploaded.geojson
+
 conversion/output/*
