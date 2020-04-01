@@ -330,7 +330,8 @@
 
           <h1 id="fileUpload">Upload Point Cloud</h1>
               <div class="col-md-4">
-                <p>Accepted filetypes:
+                <h5>Accepted filetypes:</h5>
+                <p>
                   <ul>
                     <li>
                       LAS-file
@@ -373,7 +374,7 @@
           <P>Accepted flightpath format is a GeoJSON-object with points and/or line-strings. The coordinate array has to be
             "[latitude, longitude, altitude]"</P>
           <form action='/' method='POST' encType="multipart/form-data">
-            <input type="file" name="geoUpload" onchange="checkextension()"/><br>
+            <input type="file" name="geoUpload" id="pathUpload" required/><br>
             <input type='submit' value='Upload!' />
           </form>  
         </div>

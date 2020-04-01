@@ -20,7 +20,7 @@ app.post('/', function(req, res) {
     file.mv('public/assets/mygeodata/upload/'+ filename, function (err) {
       if (err) res.send(err);
       else {
-        console.log(filename + " uploaded successfully");
+        console.log(file.name + " uploaded successfully");
         res.sendFile(`${__dirname}/public/upload.html`);
       }
     });
@@ -37,8 +37,8 @@ app.post('/', function(req, res) {
     file.mv('conversion/files/'+ output, function (err) {
       if (err) res.send(err);
       else {
-        console.log(filename + " uploaded successfully");
-        console.log("converting cloud...");
+        console.log("\r\n" + filename + " uploaded successfully" + "\r\n");
+        console.log("converting cloud..." + "\r\n");
         exec('conversion.bat', (err, stdout) => {
           if (err) {
             console.error(err);

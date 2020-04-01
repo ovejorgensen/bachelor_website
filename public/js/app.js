@@ -1,15 +1,15 @@
 window.addEventListener('load', () => {
-    const el = $('#app');
+    const el = document.getElementById('app');
     
-    let error = document.getElementById('error-template');
-    let home = document.getElementById('home-template');
-    let upload = document.getElementById('upload-template');
-    let potree = document.getElementById('potree-template');
+    let error = document.getElementById('error-template').innerHTML;
+    let home = document.getElementById('home-template').innerHTML;
+    let upload = document.getElementById('upload-template').innerHTML;
+    let potree = document.getElementById('potree-template').innerHTML;
     // Compile Handlebar Templates
-    errorTemplate = Handlebars.compile($('#error-template').html());
-    homeTemplate = Handlebars.compile($('#home-template').html());
-    uploadTemplate = Handlebars.compile($('#upload-template').html());
-    potreeTemplate = Handlebars.compile($('#potree-template').html());
+    errorTemplate = Handlebars.compile(error);
+    homeTemplate = Handlebars.compile(home);
+    uploadTemplate = Handlebars.compile(upload);
+    potreeTemplate = Handlebars.compile(potree);
 
     // Router Declaration
     const router = new Router({
@@ -18,18 +18,18 @@ window.addEventListener('load', () => {
             const html = errorTemplate({
                 message: `The path '/${path}' does not exist on this site`,
             });
-            el.html(html); 
+            el.innerHTML=html;
         },
     });
 
     router.add('/', () => {
         html = homeTemplate();
-        el.html(html);
+        el.innerHTML=html;
     });
 
     router.add('/upload', () => {
         html = uploadTemplate();
-        el.html(html);
+        el.innerHTML=html;
     });
 
     router.add('/uploaded', () => {
@@ -65,7 +65,7 @@ window.addEventListener('load', () => {
     
     function potreeRoute(source){
         let html = potreeTemplate();
-        el.html(html);
+        el.innerHTML=html;
 
         var s = document.createElement("script");
         s.type = "text/javascript";
