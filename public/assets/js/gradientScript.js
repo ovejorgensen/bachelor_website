@@ -54,6 +54,7 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
                 cameraTarget: [285393.891, 5207463.696, 400.305],
                 description:"",
             });
+
             let elTitle2 = $(`
                 <span id="spanID2">
                     Annotations #2
@@ -96,6 +97,11 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
             viewer.scene.annotations.add(About3);   
 
         } //Show/hide annotations
+
+        // document.getElementsByClassName('closer').onclick = function(el) {
+        //     this.el.style.display = "none";
+        // }
+
          el = document.getElementById("anno1");
          a1 = document.getElementById("spanID1");
 
@@ -162,9 +168,4 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
     material.shape = Potree.PointShape.CIRCLE;
     material.size = 1;
     viewer.fitToScreen();
-
-
-
-
-
 });

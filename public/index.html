@@ -40,7 +40,7 @@
     <script src="potree/libs/plasio/js/laslaz.js"></script>
 
     <script src="assets/js/index.js"></script>
-    <script data-main="scripts/main" src="scripts/require.js"></script>
+    <!-- <script data-main="scripts/main" src="scripts/require.js"></script> -->
 
 		
 		<div id="mainDiv" class="wrapper d-flex align-items-stretch">
@@ -192,10 +192,16 @@
                   <li id="fpMaker" class="nav-item">
                     <button id="flightPlanBtn" class="toolButton"><i class="fa fa-map-pin"></i><br><span id="fpStart">Plan Route</span></button>
                   </li>
+                  <li id="annoMaker" class="nav-item">
+                    <button id="activateAnno" class="toolButton"><i class="fa fa-map-pin"></i><br>Add Annotation</button>
+                  </li>
+                  <li id="insertImg" class="nav-item">
+                    <button id="insertImgBtn" class="toolButton"><i class="fa fa-photo"></i><br>Insert Images</button>
+                  </li>
                 </ul>
               </div>
             </nav>  
-            <div class="annotation-sidebar" id="anno2" style="display: none">
+            <!-- <div class="annotation-sidebar" id="anno2" style="display: none">
                 <div class="anno-close">
                     <i class="fa fa-window-close-o" aria-hidden="true" id="closer2"></i>
                 </div>
@@ -219,8 +225,8 @@
               </div>
               <button id="pointCoordinate">Show Coordinates</button>
               <button id="exportPoints">Export</button>
-          </div>
-            <div class="annotation-sidebar" id="anno1" style="display: none">
+          </div> -->
+            <!-- <div class="annotation-sidebar" id="anno" style="display: none">
                 <div class="anno-close">
                     <i class="fa fa-window-close-o" aria-hidden="true" id="closer"></i>
                 </div>
@@ -228,12 +234,12 @@
                 <div class="anno-description">This annotation contains stored images that can be inspected in a modal. 
                     <div class="anno-container">
                         <!-- Images used to open the lightbox -->
-                            <img src="assets/images/digital_draft_3.png" id="anno-image" alt="test image" onclick="openModal();currentSlide(1)" class="hover-shadow">
-                            <img src="assets/images/digital_draft_1.png" id="anno-image" alt="test image" onclick="openModal();currentSlide(2)" class="hover-shadow">
-                            <img src="assets/images/digital_draft_2.png" id="anno-image" alt="test image" onclick="openModal();currentSlide(3)" class="hover-shadow">
-                            <img src="assets/images/forest.png" id="anno-image" alt="test image" onclick="openModal();currentSlide(4)" class="hover-shadow">
+                            <!-- <img src="assets/images/digital_draft_3.png" class="anno-image" alt="test image" onclick="openModal();currentSlide(1)" class="hover-shadow">
+                            <img src="assets/images/digital_draft_1.png" class="anno-image" alt="test image" onclick="openModal();currentSlide(2)" class="hover-shadow">
+                            <img src="assets/images/digital_draft_2.png" class="anno-image" alt="test image" onclick="openModal();currentSlide(3)" class="hover-shadow">
+                            <img src="assets/images/forest.png" class="anno-image" alt="test image" onclick="openModal();currentSlide(4)" class="hover-shadow"> -->
                           <!-- The Modal/Lightbox -->
-                          <div id="myModal" class="modal">
+                          <!-- <div id="myModal" class="modal">
                             <span class="close cursor" onclick="closeModal()">&times;</span>
                             <div class="modal-content">
   
@@ -261,69 +267,27 @@
                                 <p id="caption">Image four</p>
                               </div>
   
-            
+             -->
                               <!-- Next/previous controls -->
-                              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                              <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                              <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                              <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
   
                               <!-- Caption text -->
-                              <div class="caption-container">
+                              <!-- <div class="caption-container">
                                 <p id="caption"></p>
                               </div>
-                              <!-- Thumbnail image controls -->
-                              <script>
-                              // Open the Modal
-                              function openModal() {
-                                document.getElementById("myModal").style.display = "block";
-                              }
-                              
-                              // Close the Modal
-                              function closeModal() {
-                                document.getElementById("myModal").style.display = "none";
-                              }
-                              
-                              var slideIndex = 1;
-                              showSlides(slideIndex);
-                              
-                              // Next/previous controls
-                              function plusSlides(n) {
-                                showSlides(slideIndex += n);
-                              }
-                              
-                              // Thumbnail image controls
-                               function currentSlide(n) {
-                                showSlides(slideIndex = n);
-                              }
-                              
                             
-                              function showSlides(n) {
-                              var i;
-                              var slides = document.getElementsByClassName("mySlides");
-                              var dots = document.getElementsByClassName("demo");
-                              var captionText = document.getElementById("caption");
-                              
-                                if (n > slides.length) {slideIndex = 1}
-                                if (n < 1) {slideIndex = slides.length}
-                                for (i = 0; i < slides.length; i++) {
-                                  slides[i].style.display = "none";
-                                }
-                                for (i = 0; i < dots.length; i++) {
-                                  dots[i].className = dots[i].className.replace(" active", "");
-                                }
-                                slides[slideIndex-1].style.display = "block";
-                               // dots[slideIndex-1].className += " active";
-                               // captionText.innerHTML = dots[slideIndex-1].alt;
-                              }
-                              </script>
-                             
                             </div>
                           </div>
                            
                        </div> 
+
                 </div>
-            </div>
+            </div> --> 
+
           </div>
         </div>
+        <script src="assets/js/imgModal.js"></script>
         </script>
         <!-- Upload Template -->
         <script id="upload-template" type="text/x-handlebars-template">

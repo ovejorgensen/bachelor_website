@@ -34,10 +34,25 @@ window.addEventListener('load', () => {
 
     router.add('/uploaded', () => {
         potreeRoute("assets/js/uploadPage.js");
+
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "assets/js/imageSorter.js";
+        document.body.appendChild(s);
+
+        var s2 = document.createElement("script");
+        s2.type = "text/javascript";
+        s2.src = "assets/js/annoCreator.js";
+        document.body.appendChild(s2);
     });
 
     router.add('/sample1', () => {
         potreeRoute("assets/js/gradientScript.js");
+
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "assets/js/imageSorter.js";
+        document.body.appendChild(s);
     });
 
     router.add('/sample2', () => {
