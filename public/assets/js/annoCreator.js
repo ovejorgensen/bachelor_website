@@ -39,7 +39,9 @@ document.getElementById('activateAnno').onclick = function(){
 				desc.innerHTML = "This annotation contains stored images that can be inspected in a modal.";
 				let container = document.createElement('div')
 				container.classList.add("anno-container");
-		
+				container.innerHTML+="<div class='modal myModal'><span class='close cursor' onclick='closeModal()'>&times;</span> <div class='modal-content'><a class='prev' onclick='plusSlides(-1)'>&#10094;</a> <a class='next' onclick='plusSlides(1)'>&#10095;</a> <div class='caption-container'> <p id='caption'></p></div></div>"
+
+
 				desc.appendChild(container);
 				div.appendChild(title);
 				div.appendChild(desc);
@@ -80,8 +82,6 @@ document.getElementById('activateAnno').onclick = function(){
 document.getElementById('insertImgBtn').onclick=function(){
 	imageSorter();
 }
-
-
 
 
 

@@ -253,7 +253,7 @@ a:hover, a:visited, a:link, a:active{
 	flex-grow:		1;
 }
 
-.annotation-sidebar{
+.annotation-sidebar, .annotation-sidebar-points{
 	background-color: #252A37;
 	color: lightgray;
 	height: 100%;
@@ -265,14 +265,18 @@ a:hover, a:visited, a:link, a:active{
 	border-radius: 7px;
 	-webkit-transition: right .35s;
 	transition: right .35s;
+}
+
+.annotation-sidebar{
 	overflow: scroll;
 }
+
   .anno-title{
 	text-align: center;
 	font-size: x-large;
 	color: #E3CF5B
   }
-  .anno-description{
+  .anno-description, .anno-description-points{
 	text-align: center;
 	padding: 10px;
   }

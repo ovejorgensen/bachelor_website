@@ -13,27 +13,24 @@ function imageSorter(){
 
         //Use the function for eucledian distance to find the annotation closest to each image
         for(let i=0; i<split.length; i++){
-            img = {x:split[i][1], y:split[i][2], z:split[i][3]}
+            let line = split[i].split(" ");
+            img = {x:line[1], y:line[2], z:line[3]}
 
             let lowest = 0;
             let anno;
             let annoLowPos = {x:annotations[0].position.x, y:annotations[0].position.y, z:annotations[0].position.z}
-            let annoLow = annotations[0];
             for(let j=1; j<annotations.length; j++){
                 anno = {x:annotations[j].position.x, y:annotations[j].position.y, z:annotations[j].position.z}
                 if(euclideanDistance(img, anno) < euclideanDistance(img, annoLowPos)){
                     lowest = j;
                     annoLowPos = {x:annotations[j].position.x, y:annotations[j].position.y, z:annotations[j].position.z}
-                    annoLow = annotations[j];
                 }
             }
             let image = document.createElement('img');
             image.src="assets/images/upload/"+ (i) + ".png";
             image.classList.add("anno-image", "hover-shadow");
             image.alt = "";
-            // image.onclick = openModal(), currentSlide(i+1);
-
-            console.log(lowest);
+            
             document.getElementsByClassName("anno-container")[lowest].appendChild(image);
         }
     });
@@ -46,12 +43,12 @@ function euclideanDistance(p1,p2){
    return Math.sqrt( xdiff + ydiff + zdiff)
 }
 
+// Locates every annotation currently on the scene and returns them
 function annoFinder(){
     let arr = [];
     viewer.scene.annotations.traverseDescendants(a => {
         arr.push(a);
     });
-    
     return arr;
 }
 
