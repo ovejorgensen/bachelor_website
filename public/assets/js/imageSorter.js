@@ -36,6 +36,9 @@ function imageSorter(){
     });
 }
 
+// Formula for calculating euclidean distance, i.e. the distance between two objects
+// in three dimensions. 
+// Input has to be two objects with properties x, y and z, containing coordinate values
 function euclideanDistance(p1,p2){
     xdiff = Math.pow((p1.x-p2.x),2);
     ydiff = Math.pow((p1.y-p2.y),2);

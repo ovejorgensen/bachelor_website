@@ -48,8 +48,8 @@
 				<div class="p-4 pt-5">
           <!-- <a href="/" id="mainLogo"></a> -->
 		  		<a href="/" class="img logo mb-5" style="background-image: url(assets/images/logo.png);"></a>
-	        <ul class="list-unstyled components mb-5">
-	          <li class="active">
+	        <ul id="routing" class="list-unstyled components mb-5">
+	          <li>
 	            <a href="/" data-toggle="collapse" aria-expanded="false">Home</a>
 	          </li>
 	          <li>
@@ -160,6 +160,7 @@
                   <li class="nav-item dropdown">
                     <button class="toolButton"><i class="fa fa-area-chart"></i><br>Gradient <span class="fa fa-caret-down"></span></button>
                     <div class="dropdown-content">
+                      <button id="rgba">RGBA (if exists)</button>
                       <button id="grad1">Gradient 1</button>
                       <button id="grad2">Gradient 2</button>
                       <button id="grad3">Gradient 3</button>
@@ -338,6 +339,25 @@
             "[latitude, longitude, altitude]"</P>
           <form action='/' method='POST' encType="multipart/form-data">
             <input type="file" name="geoUpload" id="pathUpload" required/><br>
+            <input type='submit' value='Upload!' />
+          </form>  
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="imageModal" class="newModal">
+      <div class="newModal-content">
+        <div class="newModal-header">
+          <h2>Upload Flight-Images</h2>
+          <span class="close" id="close">&times;</span>
+        </div>
+        <div class="newModal-body">
+          <P>You can upload any number of images as long as they are named "1.png, 2.png, ..., n.png"
+            <br> Additionally a .txt file containing the coordinate for each image has to be included where each line is formatted: [image-number, x-coord, y-coord, z-coord].
+          </P>
+          <form action='/' method='POST' encType="multipart/form-data">
+            <input type="file" name="imgUpload" id="imgUpload" required/><br>
             <input type='submit' value='Upload!' />
           </form>  
         </div>

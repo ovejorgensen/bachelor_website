@@ -1,6 +1,6 @@
 window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
 
-viewer.setEDLEnabled(true);
+viewer.setEDLEnabled(false);
 viewer.setFOV(60);
 viewer.setDescription("Sample 2 - Railway with flightpath overlay");
 viewer.setPointBudget(1 * 1000 * 1000);

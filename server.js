@@ -9,12 +9,32 @@ const port = process.env.PORT || 3000;
 app.use(express.static('public'));
 
 // Allow the app to upload files and let the server use the conversion directory
-app.use(fileUpload());
+// app.use(fileUpload());
+app.use(fileUpload({
+  limits: { 
+      fileSize: 2 * 1024 * 1024 * 1024 * 1024 * 1024
+  },
+}));
 app.use(express.static('conversion'));
 
 //handles file uploading
 app.post('/', function(req, res) {
-  if(req.files.geoUpload){
+  if(req.files.imgUpload){
+    let thisFile;
+    for (var key in req.files) {
+      thisFile = req.files[key];
+      console.log(req.files[key].name);
+      thisFile.mv('public/images/' + req.files[key].name, function(err) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          console.log('File uploaded!');
+        }
+      });
+    } 
+  }
+  else if(req.files.geoUpload){
     var file = req.files.geoUpload;
     var filename = "uploaded.geojson";
     file.mv('public/assets/mygeodata/upload/'+ filename, function (err) {
@@ -39,30 +59,30 @@ app.post('/', function(req, res) {
       else {
         console.log("\r\n" + filename + " uploaded successfully" + "\r\n");
         console.log("converting cloud..." + "\r\n");
-        exec('conversion.bat', (err, stdout) => {
-          if (err) {
-            console.error(err);
-            return;
-          }
-          console.log(stdout);
+        // exec('conversion.bat', (err, stdout) => {
+        //   if (err) {
+        //     console.error(err);
+        //     return;
+        //   }
+        //   console.log(stdout);
           
-          res.sendFile(`${__dirname}/public/upload.html`);
-        });
-              
-        // const bat = spawn('cmd.exe', ['/c', 'conversion.bat']);
-
-        // bat.stdout.on('data', (data) => {
-        //   console.log(data.toString());
-        // });
-        
-        // bat.stderr.on('data', (data) => {
-        //   console.error(data.toString());
-        // });
-        
-        // bat.on('exit', (code) => {
-        //   console.log(`Child exited with code ${code}`);
         //   res.sendFile(`${__dirname}/public/upload.html`);
         // });
+              
+        const bat = spawn('cmd.exe', ['/c', 'conversion.bat']);
+
+        bat.stdout.on('data', (data) => {
+          console.log(data.toString());
+        });
+        
+        bat.stderr.on('data', (data) => {
+          console.error(data.toString());
+        });
+        
+        bat.on('exit', (code) => {
+          console.log(`Child exited with code ${code}`);
+          res.sendFile(`${__dirname}/public/upload.html`);
+        });
       }
     });
   }

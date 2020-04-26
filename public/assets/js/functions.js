@@ -66,6 +66,11 @@ function gradientSelector() {
             pointcloud.material.gradient = Potree.Gradients["VIRIDIS"];
         }    
     }
+    document.getElementById('rgba').onclick=function(){
+        for(let pointcloud of viewer.scene.pointclouds){
+            pointcloud.material.activeAttributeName = "RGBA";
+        }
+    }
 }
 
 let points = document.getElementById("setPoints");

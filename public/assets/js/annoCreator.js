@@ -2,11 +2,10 @@ let counter=1;
 
 let active = false;
 document.getElementById('activateAnno').onclick = function(){
-    if (active == false) active = true;
-	else active = false;
+    active = !active;
 	
 	viewer.renderer.domElement.addEventListener("mousedown", (e) => { 
-		if(active == true){ 
+		if(active){ 
 			let mouse = viewer.inputHandler.mouse;
 			const camera = viewer.scene.getActiveCamera(); 
 		

@@ -23,16 +23,21 @@ window.addEventListener('load', () => {
     });
 
     router.add('/', () => {
+        upNav();
         html = homeTemplate();
         el.innerHTML=html;
     });
-
+    
     router.add('/upload', () => {
+        upNav();
         html = uploadTemplate();
         el.innerHTML=html;
     });
 
+    let showUpload=false;
     router.add('/uploaded', () => {
+        showUpload = true;
+
         potreeRoute("assets/js/uploadPage.js");
 
         var s2 = document.createElement("script");
@@ -79,6 +84,7 @@ window.addEventListener('load', () => {
     });
     
     function potreeRoute(source){
+        upNav();
         let html = potreeTemplate();
         el.innerHTML=html;
 
@@ -92,11 +98,20 @@ window.addEventListener('load', () => {
         document.body.appendChild(s2);
     }
 
+    function upNav(){
+        let content = "<li><a id='uploadedNav' href='/uploaded' data-toggle='collapse' araia-expanded='false'>User Upload</a></li>"
+        let el = document.getElementById('uploadedNav');
+        if(typeof(el) != 'undefined' && el != null){
+            return;
+        }else document.getElementById('routing').innerHTML+=content;
+    }
+
     // Navigate app to current url
     router.navigateTo(window.location.pathname);
 
     $('a').on('click', (event) => {
-        // Block browser page load
+
+        // Block browser page load, not working with potree for some reason
         //event.preventDefault();
 
         const target = $(event.target);
