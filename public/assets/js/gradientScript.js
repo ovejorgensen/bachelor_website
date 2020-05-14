@@ -106,7 +106,7 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
         //     this.el.style.display = "none";
         // }
 
-         el = document.getElementById("anno1");
+         el = document.getElementById("anno-sample");
          a1 = document.getElementById("spanID1");
 
          a1.onclick = function(){
@@ -118,7 +118,7 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
                 el.style.display = "none";
             }
         }
-        el2 = document.getElementById("anno2");
+        el2 = document.getElementById("anno-sample2");
         a2 = document.getElementById("spanID2");
 
         a2.onclick = function(){
@@ -130,7 +130,7 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
             el2.style.display = "none";
         }}
 
-        el3 = document.getElementById("anno3");
+        el3 = document.getElementById("anno-sample3");
         a3 = document.getElementById("spanID3");
 
         a3.onclick = function(){
@@ -157,6 +157,7 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
             el3.style.display = "none";  
             
         }
+
     }
 
     material.activeAttributeName = "elevation";
@@ -173,3 +174,49 @@ Potree.loadPointCloud("potree/myData/pointclouds/nuPage/cloud.js", "nuPage", e =
     material.size = 1;
     viewer.fitToScreen();
 });
+
+        // -- Thumbnail Image Control -- //
+
+        // Open the Modal
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        // Close the Modal
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            var captionText = document.getElementById("caption");
+            if(slides.length>0){
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                // dots[slideIndex-1].className += " active";
+                // captionText.innerHTML = dots[slideIndex-1].alt;
+            }
+        }

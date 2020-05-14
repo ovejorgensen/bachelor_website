@@ -79,6 +79,12 @@ nav .navbar-brand{
 	  border: none;
 	  width: 100%;
   }
+  table{
+    overflow-y:scroll;
+    display: block;
+    overflow-x: hidden;
+    height: 60%;
+}
   /* Change color of dropdown links on hover */
 .dropdown-content button:hover {background-color: #ddd;}
 

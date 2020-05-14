@@ -38,8 +38,6 @@ let active = false;
 let pointContainer = document.getElementById("annoPoints");
 
 
-
-
 close = document.getElementById("closerPoints");
 close.onclick = function(){
     pointContainer.style.display = "none";  
@@ -68,9 +66,7 @@ var index = 1;
 var coordinate = document.getElementById("pointCoordinate");
 var listMeasures = [];
 var tsvList = [];
-var coords = document.getElementById("coords");
-container.innerHTML += "Points " +'\t';
-coords.innerHTML += "Coordinates"; 
+var pointTable = document.getElementById("pointTable");
 
 
 
@@ -93,10 +89,11 @@ viewer.renderer.domElement.addEventListener("mousedown", (e) => { //clicking pla
             viewer.scene.addMeasurement(measure); 
             listPoints.push(hit.location.x, hit.location.y, hit.location.z+50); //+50 is added to make the lines visible
 
-            
+            //test
             //presentation in the container
-            container.innerHTML += index + '\t';
-            coords.innerHTML += hit.location.x  + " "+ hit.location.y  + " "+ hit.location.z+50 +"<br></br>";
+            pointTable.innerHTML += "<tr><th>Point Coordinate "+index+"</th></tr>";
+            pointTable.innerHTML += "<tbody><tr><td>X: "+hit.location.x + "<br>Y:  " +hit.location.y + "<br> Z: " + hit.location.z+50 + "</td></tr></tbody>";
+           
             
             index+=1;    
         
@@ -131,13 +128,7 @@ viewer.renderer.domElement.addEventListener("mousedown", (e) => { //clicking pla
         }
      
     }
-
-
-
-    
 })
-
-
 
 
 var exporter = document.getElementById('exportPoints');

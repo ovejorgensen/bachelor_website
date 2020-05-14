@@ -266,17 +266,30 @@ a:hover, a:visited, a:link, a:active{
 	-webkit-transition: right .35s;
 	transition: right .35s;
 }
+.annotation-sidebar-sample{
+	background-color: #252A37;
+	color: lightgray;
+	height: 100%;
+	width: 20%;
+	float:right;
+	z-index: 100;
+	position: relative;
+	border: 1px #191919 solid;
+	border-radius: 7px;
+	-webkit-transition: right .35s;
+	transition: right .35s;
+}
 
-.annotation-sidebar{
+.annotation-sidebar, annotation-sidebar-sample{
 	overflow: scroll;
 }
 
-  .anno-title{
+  .anno-title, .anno-title-sample{
 	text-align: center;
 	font-size: x-large;
 	color: #E3CF5B
   }
-  .anno-description, .anno-description-points{
+  .anno-description, .anno-description-points, .anno-description-sample{
 	text-align: center;
 	padding: 10px;
   }
@@ -293,7 +306,7 @@ a:hover, a:visited, a:link, a:active{
 	height: 8vh; 
 	
 }
-.anno-container{
+.anno-container, .anno-container-sample{
 	display: grid;
 	justify-content: space-around;
 	grid-gap: 10px;
