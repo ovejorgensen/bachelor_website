@@ -1,3 +1,8 @@
+document.getElementById('fpMaker').innerHTML="";
+document.getElementById('annoMaker').innerHTML="";
+document.getElementById('insertImg').innerHTML="";
+document.getElementById('uploadLi').innerHTML="";
+
 window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
 
 viewer.setEDLEnabled(true);

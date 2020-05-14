@@ -1,3 +1,8 @@
+document.getElementById('fpLi').innerHTML="";
+document.getElementById('controlDiv').innerHTML="";
+document.getElementById('annoMaker').innerHTML="";
+document.getElementById('insertImg').innerHTML="";
+document.getElementById('uploadLi').innerHTML="";
 
 window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
 

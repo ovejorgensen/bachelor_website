@@ -24,6 +24,19 @@
 	width: 100%;
 	background-color: #252A37 !important;
 }
+#sidebar{
+	position: relative;
+}
+#imgFooter{
+	position: absolute;
+	bottom: 3%;
+	text-align: center;
+	left: 0;
+}
+#imgFooter img{
+	height: auto;
+	width: 95%;
+}
 
 nav .navbar-brand{
 	color: #E3CF5B !important;

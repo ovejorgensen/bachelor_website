@@ -1,3 +1,8 @@
+document.getElementById('fpMaker').innerHTML="";
+document.getElementById('annoMaker').innerHTML="";
+document.getElementById('insertImg').innerHTML="";
+document.getElementById('uploadLi').innerHTML="";
+
 window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
 
 viewer.setEDLEnabled(true);
@@ -8,7 +13,7 @@ viewer.setBackground("gradient");
 viewer.setMinNodeSize(10);
 viewer.loadSettingsFromURL();
 
-newGradientCloud(Potree.Gradients["YELLOW_GREEN_2"], "potree/myData/pointclouds/groupOneBlocksPage2/cloud.js");
+newCloud("potree/myData/pointclouds/groupOneBlocksPage2/cloud.js");
 
 gradientSelector("potree/myData/pointclouds/groupOneBlocksPage2/cloud.js");
 
