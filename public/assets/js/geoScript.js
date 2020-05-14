@@ -14,12 +14,6 @@ viewer.setBackground("gradient"); // ["skybox", "gradient", "black", "white"];
 viewer.setMinNodeSize(10);
 viewer.loadSettingsFromURL();
 
- viewer.loadGUI(() => {
-     viewer.setLanguage('en');
-     $("#menu_appearance").next().show();
-     $("#menu_tools").next().show();
-     $("#menu_scene").next().show();
- });
 
 let gradientName = "YELLOW_GREEN";
 let gradient = Potree.Gradients[gradientName];
